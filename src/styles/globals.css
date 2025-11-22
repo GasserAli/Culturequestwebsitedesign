@@ -1,0 +1,42 @@
+@import "tailwind";
+
+:root {
+  --color-cream: #fff5ef;
+  --color-auburn: #a33013;
+  --color-orange: #e17624;
+  --color-green: #2cc75c;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--color-cream);
+  color: #2c3e50;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--color-auburn);
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-auburn);
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-auburn);
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
