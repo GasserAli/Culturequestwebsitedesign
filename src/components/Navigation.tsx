@@ -1,19 +1,20 @@
 import { Crown, User } from 'lucide-react';
+import { Page } from '../App';
 
 interface NavigationProps {
-  currentPage: string;
-  onNavigate: (page: string) => void;
+  currentPage: Page;
+  onNavigate: (page: Page) => void;
   isStudentView?: boolean;
 }
 
 export function Navigation({ currentPage, onNavigate, isStudentView = false }: NavigationProps) {
-  const studentLinks = [
+  const studentLinks: { id: Page; label: string }[] = [
     { id: 'student-dashboard', label: 'Dashboard' },
     { id: 'curriculum', label: 'Learn' },
     { id: 'marketplace', label: 'Shop' },
   ];
 
-  const parentLinks = [
+  const parentLinks: { id: Page; label: string }[] = [
     { id: 'landing', label: 'Home' },
     { id: 'student-dashboard', label: 'Student View' },
     { id: 'parent-dashboard', label: 'Parent View' },
@@ -25,7 +26,7 @@ export function Navigation({ currentPage, onNavigate, isStudentView = false }: N
     <nav className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <button 
+          <button
             onClick={() => onNavigate('landing')}
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
@@ -40,11 +41,10 @@ export function Navigation({ currentPage, onNavigate, isStudentView = false }: N
               <button
                 key={link.id}
                 onClick={() => onNavigate(link.id)}
-                className={`px-4 py-2 rounded-lg transition-colors ${
-                  currentPage === link.id
-                    ? 'bg-[#e17624] text-white'
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
+                className={`px-4 py-2 rounded-lg transition-colors ${currentPage === link.id
+                  ? 'bg-[#e17624] text-white'
+                  : 'text-gray-700 hover:bg-gray-100'
+                  }`}
               >
                 {link.label}
               </button>

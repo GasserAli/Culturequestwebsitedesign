@@ -1,8 +1,9 @@
 import { Coins, ShoppingBag, Star, Sparkles } from 'lucide-react';
 import { useState } from 'react';
+import { Page } from '../App';
 
 interface MarketplaceProps {
-  onNavigate: (page: string) => void;
+  onNavigate: (page: Page) => void;
 }
 
 export function Marketplace({ onNavigate }: MarketplaceProps) {
@@ -102,8 +103,8 @@ export function Marketplace({ onNavigate }: MarketplaceProps) {
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-white mb-2">Avatar Marketplace</h1>
-              <p className="text-white/90 text-xl">Customize your explorer with coins you've earned!</p>
+              <h1 className="text-[#a33013] mb-2">Avatar Marketplace</h1>
+              <p className="text-[#a33013]/90 text-xl">Customize your explorer with coins you've earned!</p>
             </div>
             <div className="bg-gradient-to-r from-[#e17624] to-[#a33013] text-white px-8 py-4 rounded-xl flex items-center gap-3">
               <Coins className="w-8 h-8" />
@@ -122,8 +123,8 @@ export function Marketplace({ onNavigate }: MarketplaceProps) {
               <button
                 onClick={() => setFilter('all')}
                 className={`px-6 py-3 rounded-xl transition-colors ${filter === 'all'
-                    ? 'bg-[#e17624] text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-[#e17624] text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
               >
                 All Items
@@ -131,8 +132,8 @@ export function Marketplace({ onNavigate }: MarketplaceProps) {
               <button
                 onClick={() => setFilter('hats')}
                 className={`px-6 py-3 rounded-xl transition-colors ${filter === 'hats'
-                    ? 'bg-[#e17624] text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-[#e17624] text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
               >
                 Hats
@@ -140,8 +141,8 @@ export function Marketplace({ onNavigate }: MarketplaceProps) {
               <button
                 onClick={() => setFilter('outfits')}
                 className={`px-6 py-3 rounded-xl transition-colors ${filter === 'outfits'
-                    ? 'bg-[#e17624] text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-[#e17624] text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
               >
                 Outfits
@@ -177,20 +178,20 @@ export function Marketplace({ onNavigate }: MarketplaceProps) {
 
                 <div className="p-6">
                   <h3 className="mb-2">{item.name}</h3>
-                  <div className="flex items-center gap-2 mb-4">
+                  {/* <div className="flex items-center gap-2 mb-4">
                     <Coins className="w-5 h-5 text-[#e17624]" />
                     <span className="text-[#a33013]">{item.price} coins</span>
-                  </div>
+                  </div> */}
 
                   <button
                     disabled={!canAfford}
                     className={`w-full py-3 rounded-xl transition-colors flex items-center justify-center gap-2 ${canAfford
-                        ? 'bg-[#e17624] text-white hover:bg-[#c96520]'
-                        : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                      ? 'bg-[#e17624] text-white hover:bg-[#c96520]'
+                      : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                       }`}
                   >
                     <ShoppingBag className="w-5 h-5" />
-                    {canAfford ? 'Buy Now' : 'Not Enough Coins'}
+                    {canAfford ? `${item.price} coins` : 'Not Enough Coins'}
                   </button>
                 </div>
               </div>
@@ -199,7 +200,7 @@ export function Marketplace({ onNavigate }: MarketplaceProps) {
         </div>
 
         {/* Earn More CTA */}
-        <div className="mt-12 bg-gradient-to-r from-[#2cc75c] to-[#e17624] rounded-2xl p-8 text-white text-center">
+        <div className="mt-12 bg-gradient-to-r from-[#a33013] to-[#e17624] rounded-2xl p-8 text-white text-center">
           <Sparkles className="w-16 h-16 mx-auto mb-4" />
           <h2 className="text-white mb-4">Need More Coins?</h2>
           <p className="text-white/90 mb-6 text-lg">

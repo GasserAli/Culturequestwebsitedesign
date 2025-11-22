@@ -1,9 +1,10 @@
 import { TrendingUp, Clock, Award, BookOpen, Target, CheckCircle, Calendar } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Page } from '../App';
 
 interface ParentDashboardProps {
-  onNavigate: (page: string) => void;
+  onNavigate: (page: Page) => void;
 }
 
 export function ParentDashboard({ onNavigate }: ParentDashboardProps) {
@@ -103,7 +104,7 @@ export function ParentDashboard({ onNavigate }: ParentDashboardProps) {
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
-              <ImageWithFallback 
+              <ImageWithFallback
                 src="https://images.unsplash.com/photo-1763013259158-8a8370542ddb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXJlbnQlMjBjaGlsZCUyMGVkdWNhdGlvbnxlbnwxfHx8fDE3NjM3MTM4ODR8MA&ixlib=rb-4.1.0&q=80&w=1080"
                 alt="Parent and child"
                 className="w-20 h-20 rounded-full object-cover"
@@ -123,7 +124,7 @@ export function ParentDashboard({ onNavigate }: ParentDashboardProps) {
         <div className="grid md:grid-cols-4 gap-6 mb-6">
           {stats.map((stat, index) => (
             <div key={index} className="bg-white rounded-xl shadow-md p-6">
-              <div 
+              <div
                 className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
                 style={{ backgroundColor: `${stat.color}15` }}
               >
@@ -162,33 +163,33 @@ export function ParentDashboard({ onNavigate }: ParentDashboardProps) {
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={weeklyProgressData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                <XAxis 
-                  dataKey="day" 
+                <XAxis
+                  dataKey="day"
                   stroke="#666"
                   style={{ fontSize: '14px' }}
                 />
-                <YAxis 
+                <YAxis
                   stroke="#666"
                   style={{ fontSize: '14px' }}
                 />
-                <Tooltip 
-                  contentStyle={{ 
+                <Tooltip
+                  contentStyle={{
                     backgroundColor: '#fff',
                     border: '1px solid #e0e0e0',
                     borderRadius: '8px',
                   }}
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="minutes" 
-                  stroke="#e17624" 
+                <Line
+                  type="monotone"
+                  dataKey="minutes"
+                  stroke="#e17624"
                   strokeWidth={3}
                   dot={{ fill: '#e17624', r: 5 }}
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="lessons" 
-                  stroke="#2cc75c" 
+                <Line
+                  type="monotone"
+                  dataKey="lessons"
+                  stroke="#2cc75c"
                   strokeWidth={3}
                   dot={{ fill: '#2cc75c', r: 5 }}
                 />
@@ -205,7 +206,7 @@ export function ParentDashboard({ onNavigate }: ParentDashboardProps) {
             <div className="space-y-4 max-h-[400px] overflow-y-auto">
               {activityFeed.map((activity) => (
                 <div key={activity.id} className="flex gap-3 pb-4 border-b border-gray-100 last:border-0">
-                  <div 
+                  <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                     style={{ backgroundColor: `${activity.color}15` }}
                   >

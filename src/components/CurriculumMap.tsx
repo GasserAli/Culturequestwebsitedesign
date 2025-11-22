@@ -8,9 +8,10 @@ import {
   CheckCircle,
   Star,
 } from "lucide-react";
+import { Page } from '../App';
 
 interface CurriculumMapProps {
-  onNavigate: (page: string) => void;
+  onNavigate: (page: Page) => void;
 }
 
 export function CurriculumMap({
@@ -95,20 +96,18 @@ export function CurriculumMap({
             {units.map((unit, index) => (
               <div
                 key={unit.id}
-                className={`flex items-center gap-8 ${
-                  index % 2 === 0
+                className={`flex items-center gap-8 ${index % 2 === 0
                     ? "lg:flex-row"
                     : "lg:flex-row-reverse"
-                }`}
+                  }`}
               >
                 {/* Spacer for alternating layout */}
                 <div className="hidden lg:block flex-1"></div>
 
                 {/* Unit Card */}
                 <div
-                  className={`flex-1 bg-white rounded-2xl shadow-xl p-8 relative ${
-                    unit.status === "locked" ? "opacity-60" : ""
-                  }`}
+                  className={`flex-1 bg-white rounded-2xl shadow-xl p-8 relative ${unit.status === "locked" ? "opacity-60" : ""
+                    }`}
                 >
                   {/* Status Badge */}
                   <div
@@ -175,11 +174,10 @@ export function CurriculumMap({
                           onNavigate("lesson")
                         }
                         disabled={unit.status === "locked"}
-                        className={`px-6 py-3 rounded-xl transition-colors ${
-                          unit.status === "locked"
+                        className={`px-6 py-3 rounded-xl transition-colors ${unit.status === "locked"
                             ? "bg-gray-200 text-gray-400 cursor-not-allowed"
                             : "text-white hover:opacity-90"
-                        }`}
+                          }`}
                         style={{
                           backgroundColor:
                             unit.status !== "locked"

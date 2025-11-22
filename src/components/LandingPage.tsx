@@ -1,8 +1,9 @@
 import { Sparkles, BookOpen, Trophy, Users, Star, Check } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Page } from '../App';
 
 interface LandingPageProps {
-  onNavigate: (page: string) => void;
+  onNavigate: (page: Page) => void;
 }
 
 export function LandingPage({ onNavigate }: LandingPageProps) {
@@ -97,17 +98,17 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
             </div>
             <h1 className="mb-6">Explore Ancient Egypt Through Play</h1>
             <p className="text-xl mb-8 text-gray-700">
-              CultureQuest makes cultural learning magical with gamified lessons, 
+              CultureQuest makes cultural learning magical with gamified lessons,
               interactive quizzes, and rewards that keep kids engaged and excited to learn.
             </p>
             <div className="flex gap-4">
-              <button 
+              <button
                 onClick={() => onNavigate('student-dashboard')}
                 className="bg-[#e17624] text-white px-8 py-4 rounded-xl hover:bg-[#c96520] transition-colors shadow-lg"
               >
                 Start Free Trial
               </button>
-              <button 
+              <button
                 onClick={() => onNavigate('parent-dashboard')}
                 className="bg-white text-[#a33013] px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors border-2 border-[#a33013]"
               >
@@ -118,7 +119,7 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
           <div className="relative">
             <div className="absolute -top-6 -right-6 w-32 h-32 bg-[#e17624] rounded-full opacity-20"></div>
             <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[#2cc75c] rounded-full opacity-20"></div>
-            <ImageWithFallback 
+            <ImageWithFallback
               src="https://images.unsplash.com/photo-1662655558695-fa6d74f16b7f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraWRzJTIwbGVhcm5pbmclMjBhbmNpZW50JTIwZWd5cHR8ZW58MXx8fHwxNzYzODE2MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080"
               alt="Kids learning"
               className="rounded-2xl shadow-2xl relative z-10 w-full h-[400px] object-cover"
@@ -183,13 +184,12 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {pricingPlans.map((plan, index) => (
-              <div 
-                key={index} 
-                className={`bg-white p-8 rounded-xl border-2 ${
-                  plan.popular 
-                    ? 'border-[#e17624] shadow-2xl scale-105' 
+              <div
+                key={index}
+                className={`bg-white p-8 rounded-xl border-2 ${plan.popular
+                    ? 'border-[#e17624] shadow-2xl scale-105'
                     : 'border-gray-200 shadow-md'
-                }`}
+                  }`}
               >
                 {plan.popular && (
                   <div className="bg-[#e17624] text-white px-4 py-1 rounded-full inline-block mb-4">
@@ -209,12 +209,11 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
                     </li>
                   ))}
                 </ul>
-                <button 
-                  className={`w-full py-3 rounded-xl transition-colors ${
-                    plan.popular
+                <button
+                  className={`w-full py-3 rounded-xl transition-colors ${plan.popular
                       ? 'bg-[#e17624] text-white hover:bg-[#c96520]'
                       : 'bg-gray-100 text-[#a33013] hover:bg-gray-200'
-                  }`}
+                    }`}
                 >
                   Start Free Trial
                 </button>
@@ -231,7 +230,7 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
           <p className="text-xl mb-8 text-white/90">
             Join thousands of families making cultural learning fun and engaging
           </p>
-          <button 
+          <button
             onClick={() => onNavigate('student-dashboard')}
             className="bg-white text-[#a33013] px-10 py-4 rounded-xl hover:bg-gray-100 transition-colors shadow-lg"
           >

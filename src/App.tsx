@@ -7,15 +7,15 @@ import { LessonPage } from './components/LessonPage';
 import { Marketplace } from './components/Marketplace';
 import { ParentDashboard } from './components/ParentDashboard';
 
-type Page = 'landing' | 'student-dashboard' | 'curriculum' | 'lesson' | 'marketplace' | 'parent-dashboard';
+export type Page = 'landing' | 'student-dashboard' | 'curriculum' | 'lesson' | 'marketplace' | 'parent-dashboard';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('landing');
 
-  const isStudentView = currentPage === 'student-dashboard' || 
-                        currentPage === 'curriculum' || 
-                        currentPage === 'lesson' || 
-                        currentPage === 'marketplace';
+  const isStudentView = currentPage === 'student-dashboard' ||
+    currentPage === 'curriculum' ||
+    currentPage === 'lesson' ||
+    currentPage === 'marketplace';
 
   const renderPage = () => {
     switch (currentPage) {
@@ -38,8 +38,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#fff5ef]">
-      <Navigation 
-        currentPage={currentPage} 
+      <Navigation
+        currentPage={currentPage}
         onNavigate={setCurrentPage}
         isStudentView={isStudentView}
       />

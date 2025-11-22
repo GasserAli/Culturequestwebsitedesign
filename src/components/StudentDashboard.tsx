@@ -1,8 +1,9 @@
 import { Coins, Play, CheckCircle, Star, Target, Book } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Page } from '../App';
 
 interface StudentDashboardProps {
-  onNavigate: (page: string) => void;
+  onNavigate: (page: Page) => void;
 }
 
 export function StudentDashboard({ onNavigate }: StudentDashboardProps) {
@@ -62,7 +63,7 @@ export function StudentDashboard({ onNavigate }: StudentDashboardProps) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
               <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#e17624] to-[#a33013] flex items-center justify-center border-4 border-[#2cc75c]">
-                <ImageWithFallback 
+                <ImageWithFallback
                   src="https://images.unsplash.com/photo-1748200100427-52921dec8597?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZCUyMGF2YXRhciUyMGlsbHVzdHJhdGlvbnxlbnwxfHx8fDE3NjM3MjkwMDF8MA&ixlib=rb-4.1.0&q=80&w=1080"
                   alt="Avatar"
                   className="w-full h-full rounded-full object-cover"
@@ -95,7 +96,7 @@ export function StudentDashboard({ onNavigate }: StudentDashboardProps) {
               <div className="p-6">
                 {recentLessons.map((lesson) => (
                   <div key={lesson.id} className="flex gap-4 items-center mb-4 last:mb-0">
-                    <ImageWithFallback 
+                    <ImageWithFallback
                       src={lesson.thumbnail}
                       alt={lesson.title}
                       className="w-32 h-24 rounded-lg object-cover"
@@ -107,15 +108,15 @@ export function StudentDashboard({ onNavigate }: StudentDashboardProps) {
                       <h3 className="mb-2">{lesson.title}</h3>
                       <div className="flex items-center gap-3">
                         <div className="flex-1 bg-gray-200 rounded-full h-2">
-                          <div 
-                            className="bg-[#e17624] h-2 rounded-full" 
+                          <div
+                            className="bg-[#e17624] h-2 rounded-full"
                             style={{ width: `${lesson.progress}%` }}
                           ></div>
                         </div>
                         <span className="text-sm text-gray-600">{lesson.progress}%</span>
                       </div>
                     </div>
-                    <button 
+                    <button
                       onClick={() => onNavigate('lesson')}
                       className="bg-[#e17624] text-white px-6 py-3 rounded-xl hover:bg-[#c96520] transition-colors flex items-center gap-2"
                     >
@@ -162,18 +163,16 @@ export function StudentDashboard({ onNavigate }: StudentDashboardProps) {
               </h3>
               <div className="space-y-4">
                 {dailyQuests.map((quest) => (
-                  <div 
+                  <div
                     key={quest.id}
-                    className={`p-4 rounded-xl border-2 transition-all ${
-                      quest.completed 
-                        ? 'bg-[#2cc75c]/10 border-[#2cc75c]' 
+                    className={`p-4 rounded-xl border-2 transition-all ${quest.completed
+                        ? 'bg-[#2cc75c]/10 border-[#2cc75c]'
                         : 'bg-gray-50 border-gray-200 hover:border-[#e17624]'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-start gap-3">
-                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                        quest.completed ? 'bg-[#2cc75c]' : 'bg-[#e17624]'
-                      }`}>
+                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${quest.completed ? 'bg-[#2cc75c]' : 'bg-[#e17624]'
+                        }`}>
                         <quest.icon className="w-5 h-5 text-white" />
                       </div>
                       <div className="flex-1">
@@ -192,7 +191,7 @@ export function StudentDashboard({ onNavigate }: StudentDashboardProps) {
                   </div>
                 ))}
               </div>
-              <button 
+              <button
                 onClick={() => onNavigate('curriculum')}
                 className="w-full bg-[#e17624] text-white py-3 rounded-xl hover:bg-[#c96520] transition-colors mt-6"
               >

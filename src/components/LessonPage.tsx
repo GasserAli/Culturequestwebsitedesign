@@ -1,8 +1,9 @@
 import { Play, BookOpen, Clock, Star, ArrowLeft, CheckCircle } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Page } from '../App';
 
 interface LessonPageProps {
-  onNavigate: (page: string) => void;
+  onNavigate: (page: Page) => void;
 }
 
 export function LessonPage({ onNavigate }: LessonPageProps) {
@@ -10,7 +11,7 @@ export function LessonPage({ onNavigate }: LessonPageProps) {
     <div className="min-h-screen p-6">
       <div className="max-w-5xl mx-auto">
         {/* Back Button */}
-        <button 
+        <button
           onClick={() => onNavigate('curriculum')}
           className="flex items-center gap-2 text-gray-600 hover:text-[#a33013] mb-6 transition-colors"
         >
@@ -55,7 +56,7 @@ export function LessonPage({ onNavigate }: LessonPageProps) {
         {/* Video Section */}
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-6">
           <div className="relative">
-            <ImageWithFallback 
+            <ImageWithFallback
               src="https://images.unsplash.com/photo-1697453809142-35c7c1463682?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbmNpZW50JTIwZWd5cHQlMjBweXJhbWlkc3xlbnwxfHx8fDE3NjM4MTYyMzl8MA&ixlib=rb-4.1.0&q=80&w=1080"
               alt="Pyramids"
               className="w-full h-[400px] object-cover"
@@ -80,11 +81,11 @@ export function LessonPage({ onNavigate }: LessonPageProps) {
         {/* Content Section */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
           <h2 className="mb-6">About the Pyramids</h2>
-          
+
           <div className="prose prose-lg max-w-none space-y-6">
             <p className="text-gray-700">
-              The Great Pyramids of Giza are among the most iconic structures in human history. 
-              Built over 4,500 years ago, these massive monuments were constructed as tombs for the 
+              The Great Pyramids of Giza are among the most iconic structures in human history.
+              Built over 4,500 years ago, these massive monuments were constructed as tombs for the
               pharaohs of ancient Egypt.
             </p>
 
@@ -94,15 +95,15 @@ export function LessonPage({ onNavigate }: LessonPageProps) {
                 Fun Fact
               </h3>
               <p className="text-gray-700">
-                The Great Pyramid of Khufu was the tallest man-made structure in the world for over 
+                The Great Pyramid of Khufu was the tallest man-made structure in the world for over
                 3,800 years! It stands at 481 feet (146 meters) tall.
               </p>
             </div>
 
             <h3>How Were They Built?</h3>
             <p className="text-gray-700">
-              The ancient Egyptians used incredible engineering skills to build the pyramids. Workers 
-              cut massive limestone blocks from quarries and transported them to the building site. 
+              The ancient Egyptians used incredible engineering skills to build the pyramids. Workers
+              cut massive limestone blocks from quarries and transported them to the building site.
               They used ramps, levers, and thousands of workers to move and stack the stones.
             </p>
 
@@ -123,9 +124,9 @@ export function LessonPage({ onNavigate }: LessonPageProps) {
 
             <h3>Why Were Pyramids Important?</h3>
             <p className="text-gray-700">
-              The pyramids served as eternal resting places for pharaohs and their treasures. 
-              Ancient Egyptians believed in an afterlife, and the pyramids were designed to help 
-              the pharaoh's spirit journey to the next world. Inside the pyramids were burial chambers, 
+              The pyramids served as eternal resting places for pharaohs and their treasures.
+              Ancient Egyptians believed in an afterlife, and the pyramids were designed to help
+              the pharaoh's spirit journey to the next world. Inside the pyramids were burial chambers,
               passages, and sometimes treasure rooms filled with items the pharaoh might need in the afterlife.
             </p>
 
@@ -148,13 +149,13 @@ export function LessonPage({ onNavigate }: LessonPageProps) {
             Complete the quiz to earn coins and unlock the next lesson!
           </p>
           <div className="flex gap-4 justify-center">
-            <button 
+            <button
               onClick={() => onNavigate('student-dashboard')}
               className="bg-white text-[#a33013] px-8 py-4 rounded-xl hover:bg-gray-100 transition-colors"
             >
               Start Quiz
             </button>
-            <button 
+            <button
               onClick={() => onNavigate('curriculum')}
               className="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl hover:bg-white/30 transition-colors"
             >
