@@ -99,17 +99,17 @@ export function Marketplace({ onNavigate }: MarketplaceProps) {
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="bg-gradient-to-r from-[#a33013] to-[#e17624] rounded-2xl p-8 mb-8 text-white">
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-white mb-2">Avatar Marketplace</h1>
               <p className="text-white/90 text-xl">Customize your explorer with coins you've earned!</p>
             </div>
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl px-8 py-4 flex items-center gap-3">
+            <div className="bg-gradient-to-r from-[#e17624] to-[#a33013] text-white px-8 py-4 rounded-xl flex items-center gap-3">
               <Coins className="w-8 h-8" />
               <div>
-                <p className="text-sm opacity-90">Your Balance</p>
-                <p className="text-2xl">{coins} coins</p>
+                <p className="text-sm opacity-90">Your Coins</p>
+                <p className="text-2xl">{coins.toLocaleString()}</p>
               </div>
             </div>
           </div>
@@ -121,31 +121,28 @@ export function Marketplace({ onNavigate }: MarketplaceProps) {
             <div className="flex gap-3">
               <button
                 onClick={() => setFilter('all')}
-                className={`px-6 py-3 rounded-xl transition-colors ${
-                  filter === 'all'
+                className={`px-6 py-3 rounded-xl transition-colors ${filter === 'all'
                     ? 'bg-[#e17624] text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
+                  }`}
               >
                 All Items
               </button>
               <button
                 onClick={() => setFilter('hats')}
-                className={`px-6 py-3 rounded-xl transition-colors ${
-                  filter === 'hats'
+                className={`px-6 py-3 rounded-xl transition-colors ${filter === 'hats'
                     ? 'bg-[#e17624] text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
+                  }`}
               >
                 Hats
               </button>
               <button
                 onClick={() => setFilter('outfits')}
-                className={`px-6 py-3 rounded-xl transition-colors ${
-                  filter === 'outfits'
+                className={`px-6 py-3 rounded-xl transition-colors ${filter === 'outfits'
                     ? 'bg-[#e17624] text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
+                  }`}
               >
                 Outfits
               </button>
@@ -165,33 +162,32 @@ export function Marketplace({ onNavigate }: MarketplaceProps) {
                 key={item.id}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
-                <div 
+                <div
                   className="h-40 flex items-center justify-center relative"
                   style={{ backgroundColor: `${getRarityColor(item.rarity)}15` }}
                 >
                   <div className="text-7xl">{item.emoji}</div>
-                  <div 
+                  <div
                     className="absolute top-3 right-3 px-3 py-1 rounded-full text-white text-xs capitalize"
                     style={{ backgroundColor: getRarityColor(item.rarity) }}
                   >
                     {item.rarity}
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <h3 className="mb-2">{item.name}</h3>
                   <div className="flex items-center gap-2 mb-4">
                     <Coins className="w-5 h-5 text-[#e17624]" />
                     <span className="text-[#a33013]">{item.price} coins</span>
                   </div>
-                  
+
                   <button
                     disabled={!canAfford}
-                    className={`w-full py-3 rounded-xl transition-colors flex items-center justify-center gap-2 ${
-                      canAfford
+                    className={`w-full py-3 rounded-xl transition-colors flex items-center justify-center gap-2 ${canAfford
                         ? 'bg-[#e17624] text-white hover:bg-[#c96520]'
                         : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    }`}
+                      }`}
                   >
                     <ShoppingBag className="w-5 h-5" />
                     {canAfford ? 'Buy Now' : 'Not Enough Coins'}
