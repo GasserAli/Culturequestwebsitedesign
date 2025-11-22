@@ -55,6 +55,6 @@
       },
       "scripts": {
           "dev": "vite",
-          "build": "vite build --output output"
+          "build": "vite build"
       }
   }
