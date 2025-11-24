@@ -8,15 +8,10 @@ import {
   CheckCircle,
   Star,
 } from "lucide-react";
-import { Page } from '../App';
+import { useNavigate } from 'react-router-dom';
 
-interface CurriculumMapProps {
-  onNavigate: (page: Page) => void;
-}
-
-export function CurriculumMap({
-  onNavigate,
-}: CurriculumMapProps) {
+export function CurriculumMap() {
+  const navigate = useNavigate();
   const units = [
     {
       id: 1,
@@ -97,8 +92,8 @@ export function CurriculumMap({
               <div
                 key={unit.id}
                 className={`flex items-center gap-8 ${index % 2 === 0
-                    ? "lg:flex-row"
-                    : "lg:flex-row-reverse"
+                  ? "lg:flex-row"
+                  : "lg:flex-row-reverse"
                   }`}
               >
                 {/* Spacer for alternating layout */}
@@ -171,12 +166,12 @@ export function CurriculumMap({
                       <button
                         onClick={() =>
                           unit.status !== "locked" &&
-                          onNavigate("lesson")
+                          navigate("/lesson")
                         }
                         disabled={unit.status === "locked"}
                         className={`px-6 py-3 rounded-xl transition-colors ${unit.status === "locked"
-                            ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                            : "text-white hover:opacity-90"
+                          ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                          : "text-white hover:opacity-90"
                           }`}
                         style={{
                           backgroundColor:

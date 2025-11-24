@@ -1,12 +1,9 @@
 import { Sparkles, BookOpen, Trophy, Users, Star, Check } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { Page } from '../App';
+import { useNavigate } from 'react-router-dom';
 
-interface LandingPageProps {
-  onNavigate: (page: Page) => void;
-}
-
-export function LandingPage({ onNavigate }: LandingPageProps) {
+export function LandingPage() {
+  const navigate = useNavigate();
   const features = [
     {
       icon: BookOpen,
@@ -103,13 +100,13 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
             </p>
             <div className="flex gap-4">
               <button
-                onClick={() => onNavigate('student-dashboard')}
+                onClick={() => navigate('/student-dashboard')}
                 className="bg-[#e17624] text-white px-8 py-4 rounded-xl hover:bg-[#c96520] transition-colors shadow-lg"
               >
                 Start Free Trial
               </button>
               <button
-                onClick={() => onNavigate('parent-dashboard')}
+                onClick={() => navigate('/parent-dashboard')}
                 className="bg-white text-[#a33013] px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors border-2 border-[#a33013]"
               >
                 Parent Portal
@@ -187,8 +184,8 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
               <div
                 key={index}
                 className={`bg-white p-8 rounded-xl border-2 ${plan.popular
-                    ? 'border-[#e17624] shadow-2xl scale-105'
-                    : 'border-gray-200 shadow-md'
+                  ? 'border-[#e17624] shadow-2xl scale-105'
+                  : 'border-gray-200 shadow-md'
                   }`}
               >
                 {plan.popular && (
@@ -211,8 +208,8 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
                 </ul>
                 <button
                   className={`w-full py-3 rounded-xl transition-colors ${plan.popular
-                      ? 'bg-[#e17624] text-white hover:bg-[#c96520]'
-                      : 'bg-gray-100 text-[#a33013] hover:bg-gray-200'
+                    ? 'bg-[#e17624] text-white hover:bg-[#c96520]'
+                    : 'bg-gray-100 text-[#a33013] hover:bg-gray-200'
                     }`}
                 >
                   Start Free Trial
@@ -231,7 +228,7 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
             Join thousands of families making cultural learning fun and engaging
           </p>
           <button
-            onClick={() => onNavigate('student-dashboard')}
+            onClick={() => navigate('/student-dashboard')}
             className="bg-white text-[#a33013] px-10 py-4 rounded-xl hover:bg-gray-100 transition-colors shadow-lg"
           >
             Get Started Free

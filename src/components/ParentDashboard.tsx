@@ -1,13 +1,10 @@
 import { TrendingUp, Clock, Award, BookOpen, Target, CheckCircle, Calendar } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { Page } from '../App';
+import { useNavigate } from 'react-router-dom';
 
-interface ParentDashboardProps {
-  onNavigate: (page: Page) => void;
-}
-
-export function ParentDashboard({ onNavigate }: ParentDashboardProps) {
+export function ParentDashboard() {
+  const navigate = useNavigate();
   const weeklyProgressData = [
     { day: 'Mon', minutes: 25, lessons: 2 },
     { day: 'Tue', minutes: 35, lessons: 3 },

@@ -1,12 +1,9 @@
 import { Coins, Play, CheckCircle, Star, Target, Book } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { Page } from '../App';
+import { useNavigate } from 'react-router-dom';
 
-interface StudentDashboardProps {
-  onNavigate: (page: Page) => void;
-}
-
-export function StudentDashboard({ onNavigate }: StudentDashboardProps) {
+export function StudentDashboard() {
+  const navigate = useNavigate();
   const dailyQuests = [
     {
       id: 1,
@@ -117,7 +114,7 @@ export function StudentDashboard({ onNavigate }: StudentDashboardProps) {
                       </div>
                     </div>
                     <button
-                      onClick={() => onNavigate('lesson')}
+                      onClick={() => navigate('/lesson')}
                       className="bg-[#e17624] text-white px-6 py-3 rounded-xl hover:bg-[#c96520] transition-colors flex items-center gap-2"
                     >
                       <Play className="w-5 h-5" />
@@ -166,8 +163,8 @@ export function StudentDashboard({ onNavigate }: StudentDashboardProps) {
                   <div
                     key={quest.id}
                     className={`p-4 rounded-xl border-2 transition-all ${quest.completed
-                        ? 'bg-[#2cc75c]/10 border-[#2cc75c]'
-                        : 'bg-gray-50 border-gray-200 hover:border-[#e17624]'
+                      ? 'bg-[#2cc75c]/10 border-[#2cc75c]'
+                      : 'bg-gray-50 border-gray-200 hover:border-[#e17624]'
                       }`}
                   >
                     <div className="flex items-start gap-3">
@@ -192,7 +189,7 @@ export function StudentDashboard({ onNavigate }: StudentDashboardProps) {
                 ))}
               </div>
               <button
-                onClick={() => onNavigate('curriculum')}
+                onClick={() => navigate('/curriculum')}
                 className="w-full bg-[#e17624] text-white py-3 rounded-xl hover:bg-[#c96520] transition-colors mt-6"
               >
                 Start New Lesson

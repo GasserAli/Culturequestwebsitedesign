@@ -1,18 +1,15 @@
 import { Play, BookOpen, Clock, Star, ArrowLeft, CheckCircle } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { Page } from '../App';
+import { useNavigate } from 'react-router-dom';
 
-interface LessonPageProps {
-  onNavigate: (page: Page) => void;
-}
-
-export function LessonPage({ onNavigate }: LessonPageProps) {
+export function LessonPage() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-5xl mx-auto">
         {/* Back Button */}
         <button
-          onClick={() => onNavigate('curriculum')}
+          onClick={() => navigate('/curriculum')}
           className="flex items-center gap-2 text-gray-600 hover:text-[#a33013] mb-6 transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
@@ -150,13 +147,13 @@ export function LessonPage({ onNavigate }: LessonPageProps) {
           </p>
           <div className="flex gap-4 justify-center">
             <button
-              onClick={() => onNavigate('student-dashboard')}
+              onClick={() => navigate('/student-dashboard')}
               className="bg-white text-[#a33013] px-8 py-4 rounded-xl hover:bg-gray-100 transition-colors"
             >
               Start Quiz
             </button>
             <button
-              onClick={() => onNavigate('curriculum')}
+              onClick={() => navigate('/curriculum')}
               className="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl hover:bg-white/30 transition-colors"
             >
               Save for Later

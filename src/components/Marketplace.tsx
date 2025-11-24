@@ -1,12 +1,9 @@
 import { Coins, ShoppingBag, Star, Sparkles } from 'lucide-react';
 import { useState } from 'react';
-import { Page } from '../App';
+import { useNavigate } from 'react-router-dom';
 
-interface MarketplaceProps {
-  onNavigate: (page: Page) => void;
-}
-
-export function Marketplace({ onNavigate }: MarketplaceProps) {
+export function Marketplace() {
+  const navigate = useNavigate();
   const [coins] = useState(1250);
   const [filter, setFilter] = useState<'all' | 'hats' | 'outfits'>('all');
 
@@ -207,7 +204,7 @@ export function Marketplace({ onNavigate }: MarketplaceProps) {
             Complete lessons, finish quizzes, and conquer daily quests to earn more coins!
           </p>
           <button
-            onClick={() => onNavigate('student-dashboard')}
+            onClick={() => navigate('/student-dashboard')}
             className="bg-white text-[#2cc75c] px-8 py-4 rounded-xl hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
           >
             <Star className="w-5 h-5" />
