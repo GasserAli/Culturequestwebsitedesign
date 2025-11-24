@@ -1776,3 +1776,26 @@ p {
   syntax: "*";
   inherits: false
 }
+
+button,
+a,
+[role="button"],
+.cursor-pointer {
+  cursor: pointer;
+}
+
+button:disabled,
+button[disabled] {
+  cursor: not-allowed;
+}
+
+/* Smooth cursor transition and active state */
+button,
+a {
+  transition: transform 0.1s ease, opacity 0.2s ease;
+}
+
+button:active:not(:disabled),
+a:active {
+  transform: scale(0.98);
+}
