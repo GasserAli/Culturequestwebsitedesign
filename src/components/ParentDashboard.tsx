@@ -1,10 +1,13 @@
-import { TrendingUp, Clock, Award, BookOpen, Target, CheckCircle, Calendar } from 'lucide-react';
+import { TrendingUp, Clock, Award, BookOpen, Target, CheckCircle, Calendar, X, Settings, Lightbulb, Bell, Shield, CreditCard } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export function ParentDashboard() {
   const navigate = useNavigate();
+  const [showSettings, setShowSettings] = useState(false);
+
   const weeklyProgressData = [
     { day: 'Mon', minutes: 25, lessons: 2 },
     { day: 'Tue', minutes: 35, lessons: 3 },
@@ -94,6 +97,30 @@ export function ParentDashboard() {
     },
   ];
 
+  const suggestions = [
+    {
+      id: 1,
+      title: 'Try the "Ancient Music" Unit',
+      description: 'Based on recent interest in history, your child might enjoy exploring ancient instruments.',
+      icon: Lightbulb,
+      color: '#e17624',
+    },
+    {
+      id: 2,
+      title: 'Weekend Challenge',
+      description: 'Complete 3 lessons this weekend to earn a special "Weekend Warrior" badge!',
+      icon: Award,
+      color: '#2cc75c',
+    },
+    {
+      id: 3,
+      title: 'Printable Activity',
+      description: 'Download our "Build a Pyramid" paper craft to reinforce learning offline.',
+      icon: BookOpen,
+      color: '#a33013',
+    },
+  ];
+
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto">
@@ -111,7 +138,11 @@ export function ParentDashboard() {
                 <p className="text-gray-600">Your child's learning progress</p>
               </div>
             </div>
-            <button className="bg-[#e17624] text-white px-6 py-3 rounded-xl hover:bg-[#c96520] transition-colors">
+            <button
+              onClick={() => setShowSettings(true)}
+              className="bg-[#e17624] text-white px-6 py-3 rounded-xl hover:bg-[#c96520] transition-colors flex items-center gap-2"
+            >
+              <Settings className="w-5 h-5" />
               Manage Settings
             </button>
           </div>
@@ -274,21 +305,155 @@ export function ParentDashboard() {
           </div>
         </div>
 
+        {/* Suggestions Section */}
+        <div className="mt-6 bg-white rounded-2xl shadow-lg p-8">
+          <h3 className="mb-6 flex items-center gap-2">
+            <Lightbulb className="w-6 h-6 text-[#e17624]" />
+            Recommended for You
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {suggestions.map((suggestion) => (
+              <div key={suggestion.id} className="bg-[#fff5ef] p-6 rounded-xl border border-[#e17624]/20 hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center mb-4 shadow-sm">
+                  <suggestion.icon className="w-5 h-5" style={{ color: suggestion.color }} />
+                </div>
+                <h4 className="font-bold text-gray-800 mb-2">{suggestion.title}</h4>
+                <p className="text-sm text-gray-600">{suggestion.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Child Management */}
         <div className="mt-6 bg-gradient-to-r from-[#a33013] to-[#e17624] rounded-2xl p-8 text-white">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-white mb-2">Child Account Settings</h3>
               <p className="text-white/90">
-                Manage learning goals, screen time limits, and curriculum preferences
+                Customize your child's learning experience, set daily goals, and manage subscriptions.
               </p>
             </div>
-            <button className="bg-white text-[#a33013] px-8 py-3 rounded-xl hover:bg-gray-100 transition-colors">
+            <button
+              onClick={() => setShowSettings(true)}
+              className="bg-white text-[#a33013] px-8 py-3 rounded-xl hover:bg-gray-100 transition-colors"
+            >
               Configure Settings
             </button>
           </div>
         </div>
       </div>
+
+      {/* Settings Modal */}
+      {showSettings && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-gray-100 flex items-center justify-between sticky top-0 bg-white z-10">
+              <h2 className="text-2xl font-bold text-gray-800">Settings</h2>
+              <button
+                onClick={() => setShowSettings(false)}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="w-6 h-6 text-gray-500" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-8">
+              {/* Account Section */}
+              <section>
+                <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <Settings className="w-5 h-5 text-[#e17624]" />
+                  Account Preferences
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                    <div>
+                      <p className="font-medium text-gray-800">Email Notifications</p>
+                      <p className="text-sm text-gray-500">Receive weekly progress reports</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" className="sr-only peer" defaultChecked />
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#e17624]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#e17624]"></div>
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                    <div>
+                      <p className="font-medium text-gray-800">Sound Effects</p>
+                      <p className="text-sm text-gray-500">Play sounds during lessons</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" className="sr-only peer" defaultChecked />
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#e17624]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#e17624]"></div>
+                    </label>
+                  </div>
+                </div>
+              </section>
+
+              {/* Parental Controls */}
+              <section>
+                <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-[#2cc75c]" />
+                  Parental Controls
+                </h3>
+                <div className="space-y-4">
+                  <div className="p-4 bg-gray-50 rounded-xl">
+                    <div className="flex items-center justify-between mb-2">
+                      <p className="font-medium text-gray-800">Daily Screen Time Limit</p>
+                      <span className="text-[#e17624] font-bold">45 mins</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="15"
+                      max="120"
+                      step="15"
+                      defaultValue="45"
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#e17624]"
+                    />
+                    <div className="flex justify-between text-xs text-gray-500 mt-1">
+                      <span>15m</span>
+                      <span>2h</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Subscription */}
+              <section>
+                <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <CreditCard className="w-5 h-5 text-[#a33013]" />
+                  Subscription
+                </h3>
+                <div className="p-4 border-2 border-[#e17624] bg-[#fff5ef] rounded-xl">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <p className="font-bold text-[#a33013]">Adventurer Plan</p>
+                      <p className="text-sm text-gray-600">Next billing date: Nov 28, 2025</p>
+                    </div>
+                    <span className="bg-[#e17624] text-white px-3 py-1 rounded-full text-sm font-bold">Active</span>
+                  </div>
+                  <button className="text-[#e17624] font-bold text-sm hover:underline">
+                    Manage Subscription
+                  </button>
+                </div>
+              </section>
+            </div>
+
+            <div className="p-6 border-t border-gray-100 flex justify-end gap-4">
+              <button
+                onClick={() => setShowSettings(false)}
+                className="px-6 py-2 text-gray-600 font-medium hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => setShowSettings(false)}
+                className="px-6 py-2 bg-[#e17624] text-white font-bold rounded-lg hover:bg-[#c96520] transition-colors"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

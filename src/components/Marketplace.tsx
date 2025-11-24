@@ -1,13 +1,13 @@
-import { Coins, ShoppingBag, Star, Sparkles } from 'lucide-react';
+import { Coins, ShoppingBag, Star, Sparkles, Check } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function Marketplace() {
   const navigate = useNavigate();
-  const [coins] = useState(1250);
-  const [filter, setFilter] = useState<'all' | 'hats' | 'outfits'>('all');
+  const [coins, setCoins] = useState(1250);
+  const [filter, setFilter] = useState<'all' | 'hats' | 'outfits' | 'owned'>('all');
 
-  const items = [
+  const [items, setItems] = useState([
     {
       id: 1,
       name: 'Pharaoh Crown',
@@ -15,6 +15,7 @@ export function Marketplace() {
       price: 500,
       rarity: 'legendary',
       emoji: '👑',
+      owned: false,
     },
     {
       id: 2,
@@ -23,6 +24,7 @@ export function Marketplace() {
       price: 150,
       rarity: 'common',
       emoji: '🎩',
+      owned: true,
     },
     {
       id: 3,
@@ -31,6 +33,7 @@ export function Marketplace() {
       price: 400,
       rarity: 'rare',
       emoji: '🪶',
+      owned: false,
     },
     {
       id: 4,
@@ -39,6 +42,7 @@ export function Marketplace() {
       price: 600,
       rarity: 'rare',
       emoji: '🧥',
+      owned: true,
     },
     {
       id: 5,
@@ -47,6 +51,7 @@ export function Marketplace() {
       price: 800,
       rarity: 'legendary',
       emoji: '👘',
+      owned: false,
     },
     {
       id: 6,
@@ -55,6 +60,7 @@ export function Marketplace() {
       price: 100,
       rarity: 'common',
       emoji: '👕',
+      owned: true,
     },
     {
       id: 7,
@@ -63,6 +69,7 @@ export function Marketplace() {
       price: 300,
       rarity: 'rare',
       emoji: '🦁',
+      owned: false,
     },
     {
       id: 8,
@@ -71,6 +78,7 @@ export function Marketplace() {
       price: 450,
       rarity: 'rare',
       emoji: '🏜️',
+      owned: false,
     },
     {
       id: 9,
@@ -79,10 +87,24 @@ export function Marketplace() {
       price: 350,
       rarity: 'rare',
       emoji: '🪲',
+      owned: false,
     },
-  ];
+  ]);
 
-  const filteredItems = items.filter(item => filter === 'all' || item.category === filter);
+  const handlePurchase = (itemId: number, price: number) => {
+    if (coins >= price) {
+      setCoins(prev => prev - price);
+      setItems(prev => prev.map(item =>
+        item.id === itemId ? { ...item, owned: true } : item
+      ));
+    }
+  };
+
+  const filteredItems = items.filter(item => {
+    if (filter === 'owned') return item.owned;
+    if (filter === 'all') return true;
+    return item.category === filter;
+  });
 
   const getRarityColor = (rarity: string) => {
     switch (rarity) {
@@ -117,33 +139,18 @@ export function Marketplace() {
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
           <div className="flex items-center justify-between">
             <div className="flex gap-3">
-              <button
-                onClick={() => setFilter('all')}
-                className={`px-6 py-3 rounded-xl transition-colors ${filter === 'all'
-                  ? 'bg-[#e17624] text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-              >
-                All Items
-              </button>
-              <button
-                onClick={() => setFilter('hats')}
-                className={`px-6 py-3 rounded-xl transition-colors ${filter === 'hats'
-                  ? 'bg-[#e17624] text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-              >
-                Hats
-              </button>
-              <button
-                onClick={() => setFilter('outfits')}
-                className={`px-6 py-3 rounded-xl transition-colors ${filter === 'outfits'
-                  ? 'bg-[#e17624] text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-              >
-                Outfits
-              </button>
+              {['all', 'hats', 'outfits', 'owned'].map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setFilter(f as any)}
+                  className={`px-6 py-3 rounded-xl transition-colors capitalize ${filter === f
+                    ? 'bg-[#e17624] text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                >
+                  {f === 'owned' ? 'My Items' : f === 'all' ? 'All Items' : f}
+                </button>
+              ))}
             </div>
             <div className="text-gray-600">
               Showing {filteredItems.length} items
@@ -171,25 +178,37 @@ export function Marketplace() {
                   >
                     {item.rarity}
                   </div>
+                  {item.owned && (
+                    <div className="absolute top-3 left-3 bg-[#2cc75c] text-white px-2 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                      <Check className="w-3 h-3" /> Owned
+                    </div>
+                  )}
                 </div>
 
                 <div className="p-6">
                   <h3 className="mb-2">{item.name}</h3>
-                  {/* <div className="flex items-center gap-2 mb-4">
-                    <Coins className="w-5 h-5 text-[#e17624]" />
-                    <span className="text-[#a33013]">{item.price} coins</span>
-                  </div> */}
 
-                  <button
-                    disabled={!canAfford}
-                    className={`w-full py-3 rounded-xl transition-colors flex items-center justify-center gap-2 ${canAfford
-                      ? 'bg-[#e17624] text-white hover:bg-[#c96520]'
-                      : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                      }`}
-                  >
-                    <ShoppingBag className="w-5 h-5" />
-                    {canAfford ? `${item.price} coins` : 'Not Enough Coins'}
-                  </button>
+                  {item.owned ? (
+                    <button
+                      disabled
+                      className="w-full py-3 rounded-xl bg-gray-100 text-gray-500 font-bold cursor-default flex items-center justify-center gap-2"
+                    >
+                      <Check className="w-5 h-5" />
+                      Owned
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handlePurchase(item.id, item.price)}
+                      disabled={!canAfford}
+                      className={`w-full py-3 rounded-xl transition-colors flex items-center justify-center gap-2 ${canAfford
+                        ? 'bg-[#e17624] text-white hover:bg-[#c96520]'
+                        : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                        }`}
+                    >
+                      <ShoppingBag className="w-5 h-5" />
+                      {canAfford ? `${item.price} coins` : 'Not Enough Coins'}
+                    </button>
+                  )}
                 </div>
               </div>
             );

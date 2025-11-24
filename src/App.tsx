@@ -6,6 +6,7 @@ import { CurriculumMap } from './components/CurriculumMap';
 import { LessonPage } from './components/LessonPage';
 import { Marketplace } from './components/Marketplace';
 import { ParentDashboard } from './components/ParentDashboard';
+import { Footer } from './components/Footer';
 
 export type Page = 'landing' | 'student-dashboard' | 'curriculum' | 'lesson' | 'marketplace' | 'parent-dashboard';
 
@@ -36,6 +37,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <AppContent />
+      <Footer onOpenHelp={() => {}} />
     </BrowserRouter>
   );
 }

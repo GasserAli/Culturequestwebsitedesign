@@ -1,4 +1,4 @@
-import { Sparkles, BookOpen, Trophy, Users, Star, Check } from 'lucide-react';
+import { Sparkles, BookOpen, Trophy, Users, Star, Check, CheckCircle, X } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useNavigate } from 'react-router-dom';
 
@@ -52,35 +52,38 @@ export function LandingPage() {
     {
       name: 'Explorer',
       price: 9.99,
+      popular: false,
       features: [
-        'Access to History unit',
-        'Basic avatar items',
-        'Daily quests',
-        'Progress tracking',
-      ],
+        { name: 'Unlimited Lessons', included: true },
+        { name: 'Daily Quests', included: true },
+        { name: 'Basic Progress Tracking', included: true },
+        { name: 'Offline Mode', included: false },
+        { name: 'Parent Dashboard', included: false },
+      ]
     },
     {
       name: 'Adventurer',
-      price: 19.99,
+      price: 14.99,
       popular: true,
       features: [
-        'All 5 curriculum units',
-        'Premium avatar items',
-        'Daily & weekly quests',
-        'Advanced analytics',
-        'Certificate of completion',
-      ],
+        { name: 'Unlimited Lessons', included: true },
+        { name: 'Daily Quests', included: true },
+        { name: 'Advanced Progress Tracking', included: true },
+        { name: 'Offline Mode', included: true },
+        { name: 'Parent Dashboard', included: true },
+      ]
     },
     {
-      name: 'Scholar',
-      price: 29.99,
+      name: 'Family',
+      price: 24.99,
+      popular: false,
       features: [
-        'Everything in Adventurer',
-        'Exclusive content',
-        'Priority support',
-        'Monthly bonus quests',
-        'Family plan (3 kids)',
-      ],
+        { name: 'Up to 4 Child Accounts', included: true },
+        { name: 'Unlimited Lessons', included: true },
+        { name: 'Advanced Progress Tracking', included: true },
+        { name: 'Offline Mode', included: true },
+        { name: 'Parent Dashboard', included: true },
+      ]
     },
   ];
 
@@ -195,21 +198,28 @@ export function LandingPage() {
                 )}
                 <h3 className="mb-2">{plan.name}</h3>
                 <div className="mb-6">
-                  <span className="text-[#a33013]">${plan.price}</span>
+                  <span className="text-4xl font-bold text-[#a33013]">${plan.price}</span>
                   <span className="text-gray-500">/month</span>
                 </div>
                 <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, fIndex) => (
-                    <li key={fIndex} className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-[#2cc75c] flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{feature}</span>
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-3">
+                      {feature.included ? (
+                        <CheckCircle className="w-5 h-5 text-[#2cc75c] flex-shrink-0" />
+                      ) : (
+                        <X className="w-5 h-5 text-gray-300 flex-shrink-0" />
+                      )}
+                      <span className={feature.included ? 'text-gray-700' : 'text-gray-400'}>
+                        {feature.name}
+                      </span>
                     </li>
                   ))}
                 </ul>
                 <button
-                  className={`w-full py-3 rounded-xl transition-colors ${plan.popular
+                  onClick={() => navigate('/student-dashboard')}
+                  className={`w-full py-3 rounded-xl font-bold transition-colors ${plan.popular
                     ? 'bg-[#e17624] text-white hover:bg-[#c96520]'
-                    : 'bg-gray-100 text-[#a33013] hover:bg-gray-200'
+                    : 'bg-[#fff5ef] text-[#e17624] hover:bg-[#ffe0cc]'
                     }`}
                 >
                   Start Free Trial
