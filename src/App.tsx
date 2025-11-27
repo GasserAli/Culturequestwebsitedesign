@@ -17,9 +17,11 @@ function AppContent() {
     location.pathname === '/lesson' ||
     location.pathname === '/marketplace';
 
+  const isLandingPage = location.pathname === '/';
+
   return (
     <div className="min-h-screen bg-[#fff5ef]">
-      <Navigation isStudentView={isStudentView} />
+      {!isLandingPage && <Navigation isStudentView={isStudentView} />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/student-dashboard" element={<StudentDashboard />} />
