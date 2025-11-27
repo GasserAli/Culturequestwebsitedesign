@@ -57,7 +57,10 @@ export function ProfileModal({
     return (
         <div
             ref={modalRef}
-            className="absolute right-0 top-full mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden z-50"
+            className="absolute right-0 top-full mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+            style={{
+                animation: 'slideDown 0.2s ease-out'
+            }}
         >
             {/* Profile Section */}
             <div className="px-4 py-3 border-b border-gray-200">
