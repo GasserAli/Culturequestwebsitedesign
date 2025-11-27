@@ -248,7 +248,7 @@ export function LandingPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 px-6 bg-white">
+      <section id="testimonials" className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="mb-4">Loved by Families Worldwide</h2>

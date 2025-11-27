@@ -26,7 +26,7 @@ export function LandingNavigation({ onOpenLoginModal }: LandingNavigationProps) 
         const observer = new IntersectionObserver(observerCallback, observerOptions);
 
         // Observe all sections
-        const sections = ['hero', 'about', 'pricing'];
+        const sections = ['hero', 'about', 'testimonials', 'pricing'];
         sections.forEach((sectionId) => {
             const element = document.getElementById(sectionId);
             if (element) {
@@ -87,6 +87,12 @@ export function LandingNavigation({ onOpenLoginModal }: LandingNavigationProps) 
                             className={getButtonClass('about')}
                         >
                             About Us
+                        </button>
+                        <button
+                            onClick={() => scrollToSection('testimonials')}
+                            className={getButtonClass('testimonials')}
+                        >
+                            Testimonials
                         </button>
                         <button
                             onClick={() => scrollToSection('pricing')}
