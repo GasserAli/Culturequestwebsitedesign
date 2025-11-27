@@ -2,9 +2,12 @@ import { Sparkles, BookOpen, Trophy, Users, Star, Check } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useNavigate } from 'react-router-dom';
 import { LandingNavigation } from './LandingNavigation';
+import { LoginModal } from './LoginModal';
+import { useState } from 'react';
 
 export function LandingPage() {
   const navigate = useNavigate();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const features = [
     {
       icon: BookOpen,
@@ -87,7 +90,7 @@ export function LandingPage() {
 
   return (
     <div className="min-h-screen">
-      <LandingNavigation />
+      <LandingNavigation onOpenLoginModal={() => setIsLoginModalOpen(true)} />
 
       {/* Hero Section */}
       <section id="hero" className="bg-gradient-to-br from-[#fff5ef] to-[#ffe8d6] py-20 px-6">
@@ -104,13 +107,13 @@ export function LandingPage() {
             <div className="flex gap-4">
               <button
                 onClick={() => navigate('/student-dashboard')}
-                className="bg-[#2cc75c] text-black px-8 py-4 rounded-xl hover:bg-[#25b350] transition-colors shadow-lg"
+                className="bg-[#2cc75c] text-black text-lg px-8 py-4 rounded-xl hover:bg-[#25b350] transition-colors shadow-lg"
               >
                 Start Free Trial
               </button>
               <button
-                onClick={() => navigate('/parent-dashboard')}
-                className="bg-white text-[#a33013] px-8 py-4 rounded-xl hover:bg-[#e17624] hover:text-white transition-colors border-2 border-[#e17624]"
+                onClick={() => setIsLoginModalOpen(true)}
+                className="bg-white text-[#a33013] text-lg px-8 py-4 rounded-xl hover:bg-[#e17624] hover:text-white transition-colors border-2 border-[#e17624]"
               >
                 Log in
               </button>
@@ -333,6 +336,9 @@ export function LandingPage() {
           </button>
         </div>
       </section>
+
+      {/* Login Modal */}
+      <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
     </div>
   );
 }
