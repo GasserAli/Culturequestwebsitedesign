@@ -59,6 +59,7 @@ export function LandingNavigation() {
         <nav className="bg-white shadow-sm sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-6 py-4">
                 <div className="flex items-center justify-between">
+                    {/* Logo */}
                     <button
                         onClick={() => scrollToSection('hero')}
                         className="flex items-center gap-2 hover:opacity-80 transition-opacity"
@@ -69,6 +70,7 @@ export function LandingNavigation() {
                         <span className="text-[#a33013] font-bold text-xl">CultureQuest</span>
                     </button>
 
+                    {/* Centered Navigation Links */}
                     <div className="flex items-center gap-6">
                         <button
                             onClick={() => scrollToSection('hero')}
@@ -87,6 +89,20 @@ export function LandingNavigation() {
                             className={getButtonClass('pricing')}
                         >
                             Pricing
+                        </button>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex items-center gap-4">
+                        <button
+                            className="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors font-medium"
+                        >
+                            Log in
+                        </button>
+                        <button
+                            className="px-6 py-2 rounded-lg bg-[#2cc75c] text-black hover:bg-[#25b350] transition-colors font-medium shadow-sm"
+                        >
+                            Start free trial
                         </button>
                     </div>
                 </div>
