@@ -1,6 +1,7 @@
 import { Sparkles, BookOpen, Trophy, Users, Star, Check } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useNavigate } from 'react-router-dom';
+import { LandingNavigation } from './LandingNavigation';
 
 export function LandingPage() {
   const navigate = useNavigate();
@@ -86,8 +87,10 @@ export function LandingPage() {
 
   return (
     <div className="min-h-screen">
+      <LandingNavigation />
+
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#fff5ef] to-[#ffe8d6] py-20 px-6">
+      <section id="hero" className="bg-gradient-to-br from-[#fff5ef] to-[#ffe8d6] py-20 px-6">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-block bg-[#2cc75c] text-white px-4 py-2 rounded-full mb-6">
@@ -147,7 +150,7 @@ export function LandingPage() {
       </section>
 
       {/* About Us Section */}
-      <section className="py-20 px-6 bg-gradient-to-br from-[#fff5ef] to-white">
+      <section id="about" className="py-20 px-6 bg-gradient-to-br from-[#fff5ef] to-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="mb-4">About CultureQuest</h2>
@@ -268,7 +271,7 @@ export function LandingPage() {
       </section>
 
       {/* Pricing */}
-      <section className="py-20 px-6">
+      <section id="pricing" className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="mb-4">Choose Your Adventure</h2>

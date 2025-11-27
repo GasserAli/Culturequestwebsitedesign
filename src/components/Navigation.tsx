@@ -58,7 +58,7 @@ export function Navigation({ isStudentView = false }: NavigationProps) {
             <div className="w-10 h-10 rounded-full bg-[#e17624] flex items-center justify-center">
               <Crown className="w-6 h-6 text-white" />
             </div>
-            <span className="text-[#a33013]">CultureQuest</span>
+            <span className="text-[#a33013] font-bold text-xl">CultureQuest</span>
           </Link>
 
           <div className="flex items-center gap-6">
