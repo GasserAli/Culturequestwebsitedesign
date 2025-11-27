@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 
 interface LandingNavigationProps {
     onOpenLoginModal: () => void;
+    onOpenOnboardingModal: () => void;
 }
 
-export function LandingNavigation({ onOpenLoginModal }: LandingNavigationProps) {
+export function LandingNavigation({ onOpenLoginModal, onOpenOnboardingModal }: LandingNavigationProps) {
     const [activeSection, setActiveSection] = useState('hero');
 
     useEffect(() => {
@@ -111,6 +112,7 @@ export function LandingNavigation({ onOpenLoginModal }: LandingNavigationProps) 
                             Log in
                         </button>
                         <button
+                            onClick={onOpenOnboardingModal}
                             className="px-6 py-2 rounded-lg bg-[#2cc75c] text-black hover:bg-[#25b350] transition-colors shadow-sm"
                         >
                             Start free trial
