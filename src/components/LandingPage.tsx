@@ -104,15 +104,15 @@ export function LandingPage() {
             <div className="flex gap-4">
               <button
                 onClick={() => navigate('/student-dashboard')}
-                className="bg-[#e17624] text-white px-8 py-4 rounded-xl hover:bg-[#c96520] transition-colors shadow-lg"
+                className="bg-[#2cc75c] text-black px-8 py-4 rounded-xl hover:bg-[#25b350] transition-colors shadow-lg"
               >
                 Start Free Trial
               </button>
               <button
                 onClick={() => navigate('/parent-dashboard')}
-                className="bg-white text-[#a33013] px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors border-2 border-[#e17624]"
+                className="bg-white text-[#a33013] px-8 py-4 rounded-xl hover:bg-[#e17624] hover:text-white transition-colors border-2 border-[#e17624]"
               >
-                Parent Portal
+                Log in
               </button>
             </div>
           </div>
