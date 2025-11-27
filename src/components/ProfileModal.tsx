@@ -120,17 +120,16 @@ export function ProfileModal({
             </div>
 
             {/* Logout Section */}
-            <div className="border-t border-gray-200 pt-1">
+            <div className="border-t border-gray-200 pt-1 hover:bg-red-100 ">
                 <button
                     onClick={() => {
                         onLogout?.();
                         onClose();
                     }}
-                    style={{ color: '#EF4444' }}
-                    className="w-full px-4 py-3 flex items-center gap-3 hover:bg-red-50 transition-colors text-left"
+                    className="w-full px-4 py-3 flex items-center gap-3 transition-colors text-left"
                 >
-                    <LogOut className="w-5 h-5" style={{ color: '#EF4444' }} />
-                    <span className="text-sm font-medium " style={{ color: '#EF4444' }}>Logout</span>
+                    <LogOut className="w-5 h-5 text-red-600" />
+                    <span className="text-sm font-medium text-red-600">Logout</span>
                 </button>
             </div>
         </div>
