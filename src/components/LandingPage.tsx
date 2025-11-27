@@ -107,7 +107,7 @@ export function LandingPage() {
               </button>
               <button
                 onClick={() => navigate('/parent-dashboard')}
-                className="bg-white text-[#a33013] px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors border-2 border-[#a33013]"
+                className="bg-white text-[#a33013] px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors border-2 border-[#e17624]"
               >
                 Parent Portal
               </button>
@@ -168,15 +168,15 @@ export function LandingPage() {
                 construction, every aspect connects to create a complete picture.
               </p>
               <div className="flex gap-4 mt-6">
-                <div className="bg-white p-4 rounded-xl shadow-md flex-1">
+                <div className="bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow flex-1">
                   <div className="text-3xl font-bold text-[#e17624] mb-1">10,000+</div>
                   <div className="text-sm text-gray-600">Active Students</div>
                 </div>
-                <div className="bg-white p-4 rounded-xl shadow-md flex-1">
+                <div className="bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow flex-1">
                   <div className="text-3xl font-bold text-[#e17624] mb-1">95%</div>
                   <div className="text-sm text-gray-600">Parent Satisfaction</div>
                 </div>
-                <div className="bg-white p-4 rounded-xl shadow-md flex-1">
+                <div className="bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow flex-1">
                   <div className="text-3xl font-bold text-[#e17624] mb-1">50+</div>
                   <div className="text-sm text-gray-600">Interactive Lessons</div>
                 </div>
