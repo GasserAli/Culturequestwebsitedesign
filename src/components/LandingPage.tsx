@@ -7,13 +7,13 @@ export function LandingPage() {
   const features = [
     {
       icon: BookOpen,
-      title: 'Interactive Lessons',
-      description: 'Engaging video content and quizzes that make learning Ancient Egypt fun and memorable',
+      title: 'Cultural Immersion',
+      description: 'Explore Egyptian history, art, language, and daily life through interactive multimedia lessons',
     },
     {
       icon: Trophy,
       title: 'Gamified Learning',
-      description: 'Earn coins, complete quests, and unlock achievements as you explore ancient cultures',
+      description: 'Earn coins, complete quests, and unlock achievements as you discover Egyptian civilization',
     },
     {
       icon: Users,
@@ -22,8 +22,8 @@ export function LandingPage() {
     },
     {
       icon: Sparkles,
-      title: 'Avatar Customization',
-      description: 'Use earned coins to buy fun hats and outfits in our marketplace',
+      title: 'Egyptian Artifacts',
+      description: 'Collect virtual artifacts and customize your avatar with authentic Egyptian-inspired items',
     },
   ];
 
@@ -31,19 +31,19 @@ export function LandingPage() {
     {
       name: 'Sarah M.',
       role: 'Parent of 8-year-old',
-      content: 'My daughter is obsessed! She learned more about Ancient Egypt in two weeks than I did in a year of school.',
+      content: 'My daughter is obsessed! She can now read basic hieroglyphics and knows more about Egyptian culture than I ever did.',
       rating: 5,
     },
     {
       name: 'James T.',
       role: 'Parent of 10-year-old',
-      content: 'The gamification is brilliant. My son actually asks to do his lessons. Worth every penny!',
+      content: 'The multi-faceted approach is brilliant. My son loves learning about pyramids, pharaohs, and daily Egyptian life!',
       rating: 5,
     },
     {
       name: 'Emily R.',
       role: 'Homeschool Mom',
-      content: 'Perfect for our curriculum. The parent dashboard helps me track learning outcomes easily.',
+      content: 'Perfect for our curriculum. My kids are learning Egyptian art, religion, and architecture in such an engaging way.',
       rating: 5,
     },
   ];
@@ -53,7 +53,7 @@ export function LandingPage() {
       name: 'Explorer',
       price: 9.99,
       features: [
-        'Access to History unit',
+        'Access to Egyptian History unit',
         'Basic avatar items',
         'Daily quests',
         'Progress tracking',
@@ -64,7 +64,7 @@ export function LandingPage() {
       price: 19.99,
       popular: true,
       features: [
-        'All 5 curriculum units',
+        'All 5 Egyptian culture units',
         'Premium avatar items',
         'Daily & weekly quests',
         'Advanced analytics',
@@ -93,10 +93,10 @@ export function LandingPage() {
             <div className="inline-block bg-[#2cc75c] text-white px-4 py-2 rounded-full mb-6">
               🎓 Trusted by 10,000+ families
             </div>
-            <h1 className="mb-6">Explore Ancient Egypt Through Play</h1>
+            <h1 className="mb-6">Discover Egyptian Culture Through Interactive Learning</h1>
             <p className="text-xl mb-8 text-gray-700">
-              CultureQuest makes cultural learning magical with gamified lessons,
-              interactive quizzes, and rewards that keep kids engaged and excited to learn.
+              CultureQuest brings Egyptian civilization to life through comprehensive exploration of its
+              history, art, language, daily life, religion, and architecture—all in one engaging platform.
             </p>
             <div className="flex gap-4">
               <button
@@ -130,7 +130,7 @@ export function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="mb-4">Why Parents & Kids Love CultureQuest</h2>
-            <p className="text-xl text-gray-600">Everything you need for an engaging cultural learning experience</p>
+            <p className="text-xl text-gray-600">A comprehensive journey through Egyptian culture's many fascinating dimensions</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
@@ -142,6 +142,101 @@ export function LandingPage() {
                 <p className="text-gray-600">{feature.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Us Section */}
+      <section className="py-20 px-6 bg-gradient-to-br from-[#fff5ef] to-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="mb-4">About CultureQuest</h2>
+            <p className="text-xl text-gray-600">Bringing Egyptian culture to life through comprehensive, multi-dimensional learning</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+            <div>
+              <h3 className="mb-4 text-[#a33013]">Our Mission</h3>
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                At CultureQuest, we believe that understanding Egyptian culture requires exploring its many
+                interconnected aspects. Founded by Egyptologists, educators, and game designers, we've created
+                a platform that teaches history, art, language, religion, architecture, and daily life as one cohesive experience.
+              </p>
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                Our multi-dimensional approach helps children aged 7-12 see Egyptian civilization as a living,
+                breathing culture—not just dates and facts. From decoding hieroglyphics to understanding pyramid
+                construction, every aspect connects to create a complete picture.
+              </p>
+              <div className="flex gap-4 mt-6">
+                <div className="bg-white p-4 rounded-xl shadow-md flex-1">
+                  <div className="text-3xl font-bold text-[#e17624] mb-1">10,000+</div>
+                  <div className="text-sm text-gray-600">Active Students</div>
+                </div>
+                <div className="bg-white p-4 rounded-xl shadow-md flex-1">
+                  <div className="text-3xl font-bold text-[#e17624] mb-1">95%</div>
+                  <div className="text-sm text-gray-600">Parent Satisfaction</div>
+                </div>
+                <div className="bg-white p-4 rounded-xl shadow-md flex-1">
+                  <div className="text-3xl font-bold text-[#e17624] mb-1">50+</div>
+                  <div className="text-sm text-gray-600">Interactive Lessons</div>
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-[#2cc75c] rounded-full opacity-20"></div>
+              <ImageWithFallback
+                src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraWRzJTIwbGVhcm5pbmclMjBleGNpdGVkfGVufDF8fHx8MTc2MzgxNjIzOXww&ixlib=rb-4.1.0&q=80&w=1080"
+                alt="Kids learning with excitement"
+                className="rounded-2xl shadow-xl relative z-10 w-full h-[400px] object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="order-2 md:order-1 relative">
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-[#e17624] rounded-full opacity-20"></div>
+              <ImageWithFallback
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwxfHx8fDE3NjM4MTYyMzl8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                alt="Our team collaborating"
+                className="rounded-2xl shadow-xl relative z-10 w-full h-[400px] object-cover"
+              />
+            </div>
+            <div className="order-1 md:order-2">
+              <h3 className="mb-4 text-[#a33013]">Our Team</h3>
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                CultureQuest was born from a collaboration between Egyptologists, experienced educators,
+                linguists, art historians, and game designers. Our diverse team brings together deep knowledge
+                of Egyptian culture with expertise in interactive learning and child development.
+              </p>
+              <p className="text-gray-700 mb-6 leading-relaxed">
+                We're passionate about showing the richness of Egyptian civilization through its art, language,
+                architecture, religion, and daily life. Every lesson connects these aspects to help children
+                understand how Egyptians lived, thought, and created one of history's greatest civilizations.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-[#2cc75c] flex-shrink-0 mt-1" />
+                  <div>
+                    <div className="font-semibold text-gray-800">Evidence-Based Learning</div>
+                    <div className="text-sm text-gray-600">Curriculum aligned with educational standards</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-[#2cc75c] flex-shrink-0 mt-1" />
+                  <div>
+                    <div className="font-semibold text-gray-800">Child-Centered Design</div>
+                    <div className="text-sm text-gray-600">Built with input from kids and parents</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-[#2cc75c] flex-shrink-0 mt-1" />
+                  <div>
+                    <div className="font-semibold text-gray-800">Continuous Innovation</div>
+                    <div className="text-sm text-gray-600">Regular updates with new content and features</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -223,9 +318,9 @@ export function LandingPage() {
       {/* CTA */}
       <section className="py-20 px-6 bg-gradient-to-r from-[#a33013] to-[#e17624]">
         <div className="max-w-4xl mx-auto text-center text-white">
-          <h2 className="mb-4 text-white">Ready to Start the Adventure?</h2>
+          <h2 className="mb-4 text-white">Ready to Explore Egyptian Culture?</h2>
           <p className="text-xl mb-8 text-white/90">
-            Join thousands of families making cultural learning fun and engaging
+            Join thousands of families discovering the rich tapestry of Egyptian civilization
           </p>
           <button
             onClick={() => navigate('/student-dashboard')}
