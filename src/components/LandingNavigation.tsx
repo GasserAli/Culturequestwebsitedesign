@@ -1,11 +1,58 @@
 import { Crown } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export function LandingNavigation() {
+    const [activeSection, setActiveSection] = useState('hero');
+
+    useEffect(() => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '-50% 0px -50% 0px',
+            threshold: 0,
+        };
+
+        const observerCallback = (entries: IntersectionObserverEntry[]) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        // Observe all sections
+        const sections = ['hero', 'about', 'pricing'];
+        sections.forEach((sectionId) => {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                observer.observe(element);
+            }
+        });
+
+        return () => {
+            sections.forEach((sectionId) => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    observer.unobserve(element);
+                }
+            });
+        };
+    }, []);
+
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+    };
+
+    const getButtonClass = (sectionId: string) => {
+        const baseClass = 'px-4 py-2 rounded-lg transition-colors';
+        const activeClass = 'bg-[#e17624] text-white';
+        const inactiveClass = 'text-gray-700 hover:bg-gray-100';
+
+        return `${baseClass} ${activeSection === sectionId ? activeClass : inactiveClass}`;
     };
 
     return (
@@ -25,19 +72,19 @@ export function LandingNavigation() {
                     <div className="flex items-center gap-6">
                         <button
                             onClick={() => scrollToSection('hero')}
-                            className="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                            className={getButtonClass('hero')}
                         >
                             Home
                         </button>
                         <button
                             onClick={() => scrollToSection('about')}
-                            className="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                            className={getButtonClass('about')}
                         >
                             About Us
                         </button>
                         <button
                             onClick={() => scrollToSection('pricing')}
-                            className="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                            className={getButtonClass('pricing')}
                         >
                             Pricing
                         </button>
