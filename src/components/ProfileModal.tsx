@@ -1,6 +1,7 @@
 import { User, HelpCircle, Settings, LogOut, RefreshCw } from 'lucide-react';
 import { useEffect, useRef, RefObject } from 'react';
 
+
 interface ProfileModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -57,7 +58,8 @@ export function ProfileModal({
     return (
         <div
             ref={modalRef}
-            className="absolute right-0 top-full mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+            className="absolute right-4 top-full mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+            // className="absolute right-0 top-full mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200"
             style={{
                 animation: 'slideDown 0.2s ease-out'
             }}
@@ -124,10 +126,11 @@ export function ProfileModal({
                         onLogout?.();
                         onClose();
                     }}
+                    style={{ color: '#EF4444' }}
                     className="w-full px-4 py-3 flex items-center gap-3 hover:bg-red-50 transition-colors text-left"
                 >
-                    <LogOut className="w-5 h-5 text-red-600 " />
-                    <span className="text-sm text-red-600 font-medium">Logout</span>
+                    <LogOut className="w-5 h-5" style={{ color: '#EF4444' }} />
+                    <span className="text-sm font-medium " style={{ color: '#EF4444' }}>Logout</span>
                 </button>
             </div>
         </div>
