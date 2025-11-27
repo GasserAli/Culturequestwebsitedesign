@@ -1,7 +1,11 @@
 import { Crown } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-export function LandingNavigation() {
+interface LandingNavigationProps {
+    onOpenLoginModal: () => void;
+}
+
+export function LandingNavigation({ onOpenLoginModal }: LandingNavigationProps) {
     const [activeSection, setActiveSection] = useState('hero');
 
     useEffect(() => {
@@ -95,12 +99,13 @@ export function LandingNavigation() {
                     {/* Action Buttons */}
                     <div className="flex items-center gap-4">
                         <button
-                            className="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors font-medium"
+                            onClick={onOpenLoginModal}
+                            className="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
                         >
                             Log in
                         </button>
                         <button
-                            className="px-6 py-2 rounded-lg bg-[#2cc75c] text-black hover:bg-[#25b350] transition-colors font-medium shadow-sm"
+                            className="px-6 py-2 rounded-lg bg-[#2cc75c] text-black hover:bg-[#25b350] transition-colors shadow-sm"
                         >
                             Start free trial
                         </button>
