@@ -1,5 +1,6 @@
 import { X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginModalProps {
     isOpen: boolean;
@@ -9,6 +10,7 @@ interface LoginModalProps {
 type AccountType = 'child' | 'parent';
 
 export function LoginModal({ isOpen, onClose }: LoginModalProps) {
+    const navigate = useNavigate();
     const [accountType, setAccountType] = useState<AccountType>('parent');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
@@ -62,6 +64,14 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
     const handleLogin = () => {
         // Placeholder for login logic
         console.log('Login attempt:', { accountType, email, username, password });
+
+        // Navigate to appropriate dashboard based on account type
+        if (accountType === 'parent') {
+            navigate('/parent-dashboard');
+        } else {
+            navigate('/student-dashboard');
+        }
+
         onClose();
     };
 
