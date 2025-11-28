@@ -87,7 +87,7 @@ export function StudentDashboard() {
             {/* Resume Learning */}
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="bg-gradient-to-r from-[#a33013] to-[#e17624] text-white p-6">
-                <h3 className="text-white mb-2">Resume Learning</h3>
+                <h3 className="text-[#e17624] mb-2">Resume Learning</h3>
                 <p className="text-white/90">Pick up where you left off</p>
               </div>
               <div className="p-6">
@@ -154,7 +154,7 @@ export function StudentDashboard() {
           {/* Daily Quests Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="mb-6 flex items-center gap-2">
+              <h3 className="mb-6 flex items-center gap-2 text-[#a33013]">
                 <Star className="w-6 h-6 text-[#e17624]" />
                 Daily Quests
               </h3>

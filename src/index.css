@@ -1457,7 +1457,6 @@ h2 {
 }
 
 h3 {
-  color: var(--heading-color, var(--color-auburn));
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1.4;
@@ -1473,11 +1472,11 @@ p {
 }
 
 .py-20.px-6.bg-gradient-to-r.from-\[\#a33013\].to-\[\#e17624\] .text-\[\#a33013\] {
-  color: var(--color-gold) !important;
+  color: var(--color-gold);
 }
 
 .py-20.px-6.bg-gradient-to-r.from-\[\#a33013\].to-\[\#e17624\] .text-\[\#e17624\] {
-  color: var(--color-gold) !important;
+  color: var(--color-gold);
 }
 
 .bg-gradient-to-r.from-\[\#a33013\].to-\[\#e17624\] .text-white.mb-2 {
@@ -1489,11 +1488,11 @@ p {
 }
 
 .bg-gradient-to-r.from-\[\#a33013\].to-\[\#e17624\] .text-\[\#a33013\] {
-  color: var(--color-gold) !important;
+  color: var(--color-gold);
 }
 
 .bg-gradient-to-r.from-\[\#a33013\].to-\[\#e17624\] .text-\[\#e17624\] {
-  color: var(--color-gold) !important;
+  color: var(--color-gold);
 }
 
 @property --tw-translate-x {

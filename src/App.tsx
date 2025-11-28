@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { LandingPage } from './components/LandingPage';
 import { StudentDashboard } from './components/StudentDashboard';
-import { CurriculumMap } from './components/CurriculumMap';
+import { CurriculumCarousel } from './components/CurriculumCarousel';
 import { LessonPage } from './components/LessonPage';
 import { Marketplace } from './components/Marketplace';
 import { ParentDashboard } from './components/ParentDashboard';
@@ -25,7 +25,7 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/student-dashboard" element={<StudentDashboard />} />
-        <Route path="/curriculum" element={<CurriculumMap />} />
+        <Route path="/curriculum" element={<CurriculumCarousel />} />
         <Route path="/lesson" element={<LessonPage />} />
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/parent-dashboard" element={<ParentDashboard />} />
