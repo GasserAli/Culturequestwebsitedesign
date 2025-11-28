@@ -3,11 +3,13 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useNavigate } from 'react-router-dom';
 import { LandingNavigation } from './LandingNavigation';
 import { LoginModal } from './LoginModal';
+import { OnboardingModal } from './OnboardingModal';
 import { useState } from 'react';
 
 export function LandingPage() {
   const navigate = useNavigate();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isOnboardingModalOpen, setIsOnboardingModalOpen] = useState(false);
   const features = [
     {
       icon: BookOpen,
@@ -90,7 +92,10 @@ export function LandingPage() {
 
   return (
     <div className="min-h-screen">
-      <LandingNavigation onOpenLoginModal={() => setIsLoginModalOpen(true)} />
+      <LandingNavigation
+        onOpenLoginModal={() => setIsLoginModalOpen(true)}
+        onOpenOnboardingModal={() => setIsOnboardingModalOpen(true)}
+      />
 
       {/* Hero Section */}
       <section id="hero" className="bg-gradient-to-br from-[#fff5ef] to-[#ffe8d6] py-20 px-6">
@@ -248,7 +253,7 @@ export function LandingPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 px-6 bg-white">
+      <section id="testimonials" className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="mb-4">Loved by Families Worldwide</h2>
@@ -339,6 +344,12 @@ export function LandingPage() {
 
       {/* Login Modal */}
       <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
+
+      {/* Onboarding Modal */}
+      <OnboardingModal
+        isOpen={isOnboardingModalOpen}
+        onClose={() => setIsOnboardingModalOpen(false)}
+      />
     </div>
   );
 }
