@@ -111,7 +111,7 @@ export function LandingPage() {
             </p>
             <div className="flex gap-4">
               <button
-                onClick={() => navigate('/student-dashboard')}
+                onClick={() => setIsOnboardingModalOpen(true)}
                 className="bg-[#2cc75c] text-black text-lg px-8 py-4 rounded-xl hover:bg-[#25b350] transition-colors shadow-lg"
               >
                 Start Free Trial
