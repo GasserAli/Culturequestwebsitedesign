@@ -343,7 +343,11 @@ export function LandingPage() {
       </section>
 
       {/* Login Modal */}
-      <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onOpenSignup={() => setIsOnboardingModalOpen(true)}
+      />
 
       {/* Onboarding Modal */}
       <OnboardingModal

@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 interface LoginModalProps {
     isOpen: boolean;
     onClose: () => void;
+    onOpenSignup: () => void;
 }
 
 type AccountType = 'child' | 'parent';
 
-export function LoginModal({ isOpen, onClose }: LoginModalProps) {
+export function LoginModal({ isOpen, onClose, onOpenSignup }: LoginModalProps) {
     const navigate = useNavigate();
     const [accountType, setAccountType] = useState<AccountType>('parent');
     const [email, setEmail] = useState('');
@@ -76,8 +77,9 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
     };
 
     const handleCreateAccount = () => {
-        // Placeholder for create account logic
-        console.log('Create account clicked');
+        // Close login modal and open signup modal
+        onClose();
+        onOpenSignup();
     };
 
     const openSocialMedia = (platform: 'google' | 'facebook' | 'instagram') => {
