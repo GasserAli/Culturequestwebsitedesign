@@ -1,5 +1,6 @@
 import { X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface OnboardingModalProps {
     isOpen: boolean;
@@ -9,6 +10,7 @@ interface OnboardingModalProps {
 type OnboardingStage = 'parent-info' | 'child-info' | 'interests' | 'avatar';
 
 export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
+    const navigate = useNavigate();
     const [currentStage, setCurrentStage] = useState<OnboardingStage>('parent-info');
     const [isLoginMode, setIsLoginMode] = useState(false);
 
@@ -120,6 +122,7 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
                 interests: selectedInterests
             });
             onClose();
+            navigate('/student-dashboard');
         }
     };
 
