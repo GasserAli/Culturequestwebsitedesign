@@ -287,7 +287,9 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
                                 <button
                                     onClick={() => {
                                         console.log('Login:', { loginEmail, loginPassword });
-                                        onClose();
+                                        // Switch back to signup mode and proceed to next step
+                                        setIsLoginMode(false);
+                                        setCurrentStage('child-info');
                                     }}
                                     className="flex-1 py-3 px-4 rounded-xl font-medium bg-[#2cc75c] text-black hover:bg-[#25b350] transition-colors shadow-lg"
                                 >
