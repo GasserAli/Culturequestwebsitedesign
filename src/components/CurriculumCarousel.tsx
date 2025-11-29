@@ -14,6 +14,13 @@ export function CurriculumCarousel() {
     const navigate = useNavigate();
     const [scrollPosition, setScrollPosition] = useState(0);
 
+    const handleTopicClick = (topic: any) => {
+        // Exclude the icon property as it's a React component and cannot be serialized
+        const { icon, ...topicData } = topic;
+        console.log("Navigating to topic:", topicData);
+        navigate("/topic-detail", { state: { topic: topicData } });
+    };
+
     const topics = [
         {
             id: 1,
@@ -24,6 +31,31 @@ export function CurriculumCarousel() {
             completedUnits: 3,
             description: "Explore pyramids, pharaohs, and ancient civilizations",
             image: "https://images.unsplash.com/photo-1539768942893-daf53e448371?w=800&h=600&fit=crop",
+            units: [
+                {
+                    id: "1.1",
+                    title: "Ancient Egypt Basics",
+                    lessonCount: 5,
+                    lessons: [
+                        { id: "1.1.1", title: "Introduction to Ancient Egypt", description: "Overview of Egyptian civilization", status: "completed" as const },
+                        { id: "1.1.2", title: "The Nile River", description: "Life along the Nile", status: "in-progress" as const },
+                        { id: "1.1.3", title: "Egyptian Society", description: "Social structure and daily life", status: "locked" as const },
+                        { id: "1.1.4", title: "Pharaohs and Power", description: "Egyptian rulers", status: "locked" as const },
+                        { id: "1.1.5", title: "Writing and Hieroglyphs", description: "Egyptian writing system", status: "locked" as const },
+                    ],
+                },
+                {
+                    id: "1.2",
+                    title: "Pyramids and Architecture",
+                    lessonCount: 4,
+                    lessons: [
+                        { id: "1.2.1", title: "The Great Pyramid", description: "Wonders of Giza", status: "locked" as const },
+                        { id: "1.2.2", title: "Temple Construction", description: "Building techniques", status: "locked" as const },
+                        { id: "1.2.3", title: "Tombs and Burial", description: "Egyptian afterlife beliefs", status: "locked" as const },
+                        { id: "1.2.4", title: "Architectural Innovations", description: "Engineering marvels", status: "locked" as const },
+                    ],
+                },
+            ],
         },
         {
             id: 2,
@@ -34,6 +66,20 @@ export function CurriculumCarousel() {
             completedUnits: 1,
             description: "Discover traditional Egyptian cuisine and recipes",
             image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=600&fit=crop",
+            units: [
+                {
+                    id: "2.1",
+                    title: "Traditional Dishes",
+                    lessonCount: 5,
+                    lessons: [
+                        { id: "2.1.1", title: "Koshari", description: "Egypt's national dish", status: "completed" as const },
+                        { id: "2.1.2", title: "Ful Medames", description: "Traditional breakfast", status: "locked" as const },
+                        { id: "2.1.3", title: "Molokhia", description: "Green soup delicacy", status: "locked" as const },
+                        { id: "2.1.4", title: "Mahshi", description: "Stuffed vegetables", status: "locked" as const },
+                        { id: "2.1.5", title: "Egyptian Bread", description: "Aish baladi", status: "locked" as const },
+                    ],
+                },
+            ],
         },
         {
             id: 3,
@@ -44,6 +90,19 @@ export function CurriculumCarousel() {
             completedUnits: 0,
             description: "Learn about ancient instruments and rhythms",
             image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop",
+            units: [
+                {
+                    id: "3.1",
+                    title: "Ancient Music",
+                    lessonCount: 4,
+                    lessons: [
+                        { id: "3.1.1", title: "Egyptian Instruments", description: "Traditional instruments", status: "locked" as const },
+                        { id: "3.1.2", title: "Music in Ceremonies", description: "Religious and cultural music", status: "locked" as const },
+                        { id: "3.1.3", title: "Dance and Movement", description: "Traditional dances", status: "locked" as const },
+                        { id: "3.1.4", title: "Modern Egyptian Music", description: "Contemporary influences", status: "locked" as const },
+                    ],
+                },
+            ],
         },
         {
             id: 4,
@@ -54,6 +113,20 @@ export function CurriculumCarousel() {
             completedUnits: 2,
             description: "Understand customs, traditions, and social norms",
             image: "https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?w=800&h=600&fit=crop",
+            units: [
+                {
+                    id: "4.1",
+                    title: "Social Customs",
+                    lessonCount: 5,
+                    lessons: [
+                        { id: "4.1.1", title: "Greetings and Hospitality", description: "Egyptian manners", status: "completed" as const },
+                        { id: "4.1.2", title: "Family Values", description: "Family structure", status: "in-progress" as const },
+                        { id: "4.1.3", title: "Celebrations and Festivals", description: "Traditional celebrations", status: "locked" as const },
+                        { id: "4.1.4", title: "Religious Practices", description: "Cultural traditions", status: "locked" as const },
+                        { id: "4.1.5", title: "Modern Etiquette", description: "Contemporary customs", status: "locked" as const },
+                    ],
+                },
+            ],
         },
     ];
 
@@ -119,7 +192,7 @@ export function CurriculumCarousel() {
                             <div
                                 key={topic.id}
                                 className="flex-shrink-0 w-96 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer"
-                                onClick={() => navigate("/lesson")}
+                                onClick={() => handleTopicClick(topic)}
                             >
                                 {/* Topic Image */}
                                 <div className="relative h-64 overflow-hidden">
@@ -174,7 +247,7 @@ export function CurriculumCarousel() {
                                     <button
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            navigate("/lesson");
+                                            handleTopicClick(topic);
                                         }}
                                         className="w-full py-4 rounded-xl font-semibold text-white text-lg hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md bg-[#e17624]">
                                         {topic.completedUnits === 0
