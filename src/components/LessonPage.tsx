@@ -1,5 +1,4 @@
-import { Play, BookOpen, Clock, Star, ArrowLeft, CheckCircle } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { BookOpen, Clock, Star, ArrowLeft, CheckCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export function LessonPage() {
@@ -52,26 +51,16 @@ export function LessonPage() {
 
         {/* Video Section */}
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-6">
-          <div className="relative">
-            <ImageWithFallback
-              src="https://images.unsplash.com/photo-1697453809142-35c7c1463682?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbmNpZW50JTIwZWd5cHQlMjBweXJhbWlkc3xlbnwxfHx8fDE3NjM4MTYyMzl8MA&ixlib=rb-4.1.0&q=80&w=1080"
-              alt="Pyramids"
-              className="w-full h-[400px] object-cover"
-            />
-            <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <button className="w-20 h-20 bg-[#e17624] rounded-full flex items-center justify-center hover:bg-[#c96520] transition-colors shadow-2xl">
-                <Play className="w-10 h-10 text-white ml-1" />
-              </button>
-            </div>
-            <div className="absolute bottom-4 left-4 right-4 bg-black/50 backdrop-blur-sm text-white p-4 rounded-lg">
-              <div className="flex items-center justify-between">
-                <span>Introduction to the Pyramids</span>
-                <span>3:45 / 8:30</span>
-              </div>
-              <div className="mt-2 bg-white/20 rounded-full h-2">
-                <div className="bg-[#e17624] h-2 rounded-full w-1/2"></div>
-              </div>
-            </div>
+          <div className="relative w-full" style={{ paddingBottom: '42.15%' }}>
+            <iframe
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/vJucA4FOTSI"
+              title="How Were the Pyramids Actually Built?"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
 
