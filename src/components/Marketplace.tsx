@@ -325,8 +325,8 @@ export function Marketplace() {
 
         {/* Earn More CTA */}
         <div className="mt-12 bg-gradient-to-r from-[#a33013] to-[#e17624] rounded-2xl p-8 text-white text-center">
-          <Sparkles className="w-16 h-16 mx-auto mb-4" />
-          <h2 className="text-3xl font-bold text-white mb-4">Need More Coins?</h2>
+          <Sparkles className="w-16 h-16 mx-auto mb-4 text-[#e17624]" />
+          <h2 className="text-3xl font-bold text-[#e17624] mb-4">Need More Coins?</h2>
           <p className="text-white/90 mb-6 text-lg">
             Complete lessons, finish quizzes, and conquer daily quests to earn more coins!
           </p>
