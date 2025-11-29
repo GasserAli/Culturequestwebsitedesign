@@ -133,7 +133,7 @@ export function LessonPage() {
 
         {/* Quiz CTA */}
         <div className="bg-gradient-to-r from-[#a33013] to-[#e17624] rounded-2xl p-8 text-white text-center">
-          <h2 className="text-white mb-4">Ready to Test Your Knowledge?</h2>
+          <h2 className="text-[#e17624] mb-4">Ready to Test Your Knowledge?</h2>
           <p className="text-white/90 mb-6 text-lg">
             Complete the quiz to earn coins and unlock the next lesson!
           </p>
