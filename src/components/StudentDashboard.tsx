@@ -1,9 +1,15 @@
 import { Coins, Play, CheckCircle, Star, Target, Book } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 
 export function StudentDashboard() {
   const navigate = useNavigate();
+  const [coins, setCoins] = useState(() => {
+    const savedCoins = sessionStorage.getItem('userCoins');
+    return savedCoins ? parseInt(savedCoins, 10) : 1250;
+  });
   const dailyQuests = [
     {
       id: 1,
@@ -75,7 +81,7 @@ export function StudentDashboard() {
               <Coins className="w-8 h-8" />
               <div>
                 <p className="text-sm opacity-90">Your Coins</p>
-                <p className="text-2xl">1,250</p>
+                <p className="text-3xl font-bold">{coins.toLocaleString()}</p>
               </div>
             </div>
           </div>
