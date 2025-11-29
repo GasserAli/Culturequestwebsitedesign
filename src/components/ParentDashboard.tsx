@@ -278,7 +278,7 @@ export function ParentDashboard() {
         <div className="mt-6 bg-gradient-to-r from-[#a33013] to-[#e17624] rounded-2xl p-8 text-white">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-white mb-2">Child Account Settings</h3>
+              <h3 className="text-[#e17624] mb-2">Child Account Settings</h3>
               <p className="text-white/90">
                 Manage learning goals, screen time limits, and curriculum preferences
               </p>

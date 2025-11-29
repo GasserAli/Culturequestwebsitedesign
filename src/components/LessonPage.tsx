@@ -1,8 +1,11 @@
 import { BookOpen, Clock, Star, ArrowLeft, CheckCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { QuizModal } from './QuizModal';
 
 export function LessonPage() {
   const navigate = useNavigate();
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-5xl mx-auto">
@@ -136,20 +139,23 @@ export function LessonPage() {
           </p>
           <div className="flex gap-4 justify-center">
             <button
-              onClick={() => navigate('/student-dashboard')}
-              className="bg-white text-[#a33013] px-8 py-4 rounded-xl hover:bg-gray-100 transition-colors"
+              onClick={() => setIsQuizOpen(true)}
+              className="bg-white text-[#a33013] px-8 py-4 rounded-xl hover:bg-gray-100 transition-colors font-semibold"
             >
               Start Quiz
             </button>
             <button
               onClick={() => navigate('/curriculum')}
-              className="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl hover:bg-white/30 transition-colors"
+              className="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl hover:bg-white/30 transition-colors font-semibold"
             >
               Save for Later
             </button>
           </div>
         </div>
       </div>
+
+      {/* Quiz Modal */}
+      <QuizModal isOpen={isQuizOpen} onClose={() => setIsQuizOpen(false)} />
     </div>
   );
 }
