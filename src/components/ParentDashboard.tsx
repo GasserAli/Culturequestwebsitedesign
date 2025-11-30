@@ -8,6 +8,7 @@ import { SettingsModal } from './SettingsModal';
 export function ParentDashboard() {
   const navigate = useNavigate();
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
+  const [settingsDefaultTab, setSettingsDefaultTab] = useState<'general' | 'security' | 'childSettings' | 'billing'>('general');
 
   const weeklyProgressData = [
     { day: 'Mon', minutes: 25, lessons: 2 },
@@ -116,7 +117,10 @@ export function ParentDashboard() {
               </div>
             </div>
             <button
-              onClick={() => setIsSettingsModalOpen(true)}
+              onClick={() => {
+                setSettingsDefaultTab('general');
+                setIsSettingsModalOpen(true);
+              }}
               className="bg-[#e17624] text-white px-6 py-3 rounded-xl hover:bg-[#c96520] transition-colors"
             >
               Manage Settings
@@ -290,8 +294,14 @@ export function ParentDashboard() {
                 Manage learning goals, screen time limits, and curriculum preferences
               </p>
             </div>
-            <button className="bg-white text-[#a33013] px-8 py-3 rounded-xl hover:bg-gray-100 transition-colors">
-              Configure Settings
+            <button
+              onClick={() => {
+                setSettingsDefaultTab('childSettings');
+                setIsSettingsModalOpen(true);
+              }}
+              className="bg-white text-[#a33013] px-8 py-3 rounded-xl hover:bg-gray-100 transition-colors"
+            >
+              Manage Child Settings
             </button>
           </div>
         </div>
@@ -301,6 +311,7 @@ export function ParentDashboard() {
       <SettingsModal
         isOpen={isSettingsModalOpen}
         onClose={() => setIsSettingsModalOpen(false)}
+        defaultTab={settingsDefaultTab}
       />
     </div>
   );

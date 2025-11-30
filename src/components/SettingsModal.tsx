@@ -5,6 +5,7 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 interface SettingsModalProps {
     isOpen: boolean;
     onClose: () => void;
+    defaultTab?: TabType;
 }
 
 type TabType = 'general' | 'security' | 'childSettings' | 'billing';
@@ -60,8 +61,8 @@ function ConfirmationPopup({
                     <button
                         onClick={onConfirm}
                         className={`flex-1 py-3 px-4 rounded-xl font-medium transition-colors ${isDangerous
-                                ? 'bg-red-600 text-white hover:bg-red-700'
-                                : 'bg-[#e17624] text-white hover:bg-[#c96520]'
+                            ? 'bg-red-600 text-white hover:bg-red-700'
+                            : 'bg-[#e17624] text-white hover:bg-[#c96520]'
                             }`}
                     >
                         {confirmText}
@@ -72,7 +73,7 @@ function ConfirmationPopup({
     );
 }
 
-export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
+export function SettingsModal({ isOpen, onClose, defaultTab = 'general' }: SettingsModalProps) {
     const [activeTab, setActiveTab] = useState<TabType>('general');
     const [showDeleteAccountPopup, setShowDeleteAccountPopup] = useState(false);
     const [showCloseChildAccountPopup, setShowCloseChildAccountPopup] = useState(false);
@@ -129,12 +130,12 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
         };
     }, [isOpen, onClose]);
 
-    // Reset to general tab when modal opens
+    // Set to default tab when modal opens
     useEffect(() => {
         if (isOpen) {
-            setActiveTab('general');
+            setActiveTab(defaultTab);
         }
-    }, [isOpen]);
+    }, [isOpen, defaultTab]);
 
     if (!isOpen) return null;
 
@@ -223,8 +224,8 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                                             key={tab.id}
                                             onClick={() => setActiveTab(tab.id)}
                                             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all ${activeTab === tab.id
-                                                    ? 'bg-[#e17624] text-white shadow-lg'
-                                                    : 'text-gray-700 hover:bg-gray-200'
+                                                ? 'bg-[#e17624] text-white shadow-lg'
+                                                : 'text-gray-700 hover:bg-gray-200'
                                                 }`}
                                         >
                                             <Icon className="w-5 h-5" />
@@ -442,10 +443,10 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                                                     <div className="w-full bg-gray-200 rounded-full h-3">
                                                         <div
                                                             className={`h-3 rounded-full transition-all ${child.screenTime >= child.screenTimeLimit
-                                                                    ? 'bg-red-500'
-                                                                    : child.screenTime >= child.screenTimeLimit * 0.8
-                                                                        ? 'bg-yellow-500'
-                                                                        : 'bg-[#2cc75c]'
+                                                                ? 'bg-red-500'
+                                                                : child.screenTime >= child.screenTimeLimit * 0.8
+                                                                    ? 'bg-yellow-500'
+                                                                    : 'bg-[#2cc75c]'
                                                                 }`}
                                                             style={{ width: `${Math.min((child.screenTime / child.screenTimeLimit) * 100, 100)}%` }}
                                                         />
