@@ -264,17 +264,17 @@ export function CurriculumCarousel() {
 
                 {/* Achievement Section */}
                 <div className="mt-16 bg-gradient-to-r from-[#a33013] to-[#e17624] rounded-2xl p-8 text-white text-center">
-                    <h2 className="text-white text-3xl font-bold mb-4">
+                    <h2 className="text-[#e17624] text-3xl font-bold mb-4">
                         Complete All Topics to Earn
                     </h2>
                     <div className="inline-block bg-white/20 backdrop-blur-sm rounded-2xl p-8">
                         <div className="w-28 h-28 bg-[#2cc75c] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                             <Star className="w-14 h-14 text-white" />
                         </div>
-                        <h3 className="text-white text-2xl font-bold mb-3">
+                        <h3 className="text-white/70 text-2xl font-bold mb-3">
                             Master Explorer Certificate
                         </h3>
-                        <p className="text-white/90 text-lg">
+                        <p className="text-white/70 text-lg">
                             Official recognition of your Ancient Egypt expertise
                         </p>
                     </div>
