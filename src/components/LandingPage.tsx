@@ -329,7 +329,7 @@ export function LandingPage() {
       {/* CTA */}
       <section className="py-20 px-6 bg-gradient-to-r from-[#a33013] to-[#e17624]">
         <div className="max-w-4xl mx-auto text-center text-white">
-          <h2 className="mb-4 text-white">Ready to Explore Egyptian Culture?</h2>
+          <h2 className="mb-4 text-[#e17624]  ">Ready to Explore Egyptian Culture?</h2>
           <p className="text-xl mb-8 text-white/90">
             Join thousands of families discovering the rich tapestry of Egyptian civilization
           </p>
