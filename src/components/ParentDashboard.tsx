@@ -2,9 +2,13 @@ import { TrendingUp, Clock, Award, BookOpen, Target, CheckCircle, Calendar } fro
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { SettingsModal } from './SettingsModal';
 
 export function ParentDashboard() {
   const navigate = useNavigate();
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
+
   const weeklyProgressData = [
     { day: 'Mon', minutes: 25, lessons: 2 },
     { day: 'Tue', minutes: 35, lessons: 3 },
@@ -111,7 +115,10 @@ export function ParentDashboard() {
                 <p className="text-gray-600">Your child's learning progress</p>
               </div>
             </div>
-            <button className="bg-[#e17624] text-white px-6 py-3 rounded-xl hover:bg-[#c96520] transition-colors">
+            <button
+              onClick={() => setIsSettingsModalOpen(true)}
+              className="bg-[#e17624] text-white px-6 py-3 rounded-xl hover:bg-[#c96520] transition-colors"
+            >
               Manage Settings
             </button>
           </div>
@@ -289,6 +296,12 @@ export function ParentDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Settings Modal */}
+      <SettingsModal
+        isOpen={isSettingsModalOpen}
+        onClose={() => setIsSettingsModalOpen(false)}
+      />
     </div>
   );
 }
