@@ -7,6 +7,7 @@ import { TopicDetailPage } from './components/TopicDetailPage';
 import { LessonPage } from './components/LessonPage';
 import { Marketplace } from './components/Marketplace';
 import { ParentDashboard } from './components/ParentDashboard';
+import { NotFoundPage } from './components/NotFoundPage';
 
 export type Page = 'landing' | 'student-dashboard' | 'curriculum' | 'topic-detail' | 'lesson' | 'marketplace' | 'parent-dashboard';
 
@@ -32,6 +33,7 @@ function AppContent() {
         <Route path="/lesson" element={<LessonPage />} />
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/parent-dashboard" element={<ParentDashboard />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
