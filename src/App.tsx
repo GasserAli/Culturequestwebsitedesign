@@ -12,6 +12,7 @@ import { NotFoundPage } from './components/NotFoundPage';
 import { HelpFAQ } from './components/HelpFAQ';
 import { TimeBlockPopup } from './components/TimeBlockPopup';
 import { SuggestionForm } from './components/SuggestionForm';
+import { Footer } from './components/Footer';
 
 export type Page = 'landing' | 'student-dashboard' | 'curriculum' | 'topic-detail' | 'lesson' | 'marketplace' | 'parent-dashboard' | 'help-faq' | 'suggestion-form';
 
@@ -74,20 +75,23 @@ function AppContent() {
   }, [isStudentView, showTimeBlockPopup]);
 
   return (
-    <div className="min-h-screen bg-[#fff5ef]">
+    <div className="min-h-screen bg-[#fff5ef] flex flex-col">
       {!isLandingPage && <Navigation isStudentView={isStudentView} />}
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/student-dashboard" element={<StudentDashboard />} />
-        <Route path="/curriculum" element={<CurriculumCarousel />} />
-        <Route path="/topic-detail" element={<TopicDetailPage />} />
-        <Route path="/lesson" element={<LessonPage />} />
-        <Route path="/marketplace" element={<Marketplace />} />
-        <Route path="/parent-dashboard" element={<ParentDashboard />} />
-        <Route path="/help-faq" element={<HelpFAQ />} />
-        <Route path="/suggestion-form" element={<SuggestionForm />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <div className="flex-1">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/student-dashboard" element={<StudentDashboard />} />
+          <Route path="/curriculum" element={<CurriculumCarousel />} />
+          <Route path="/topic-detail" element={<TopicDetailPage />} />
+          <Route path="/lesson" element={<LessonPage />} />
+          <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/parent-dashboard" element={<ParentDashboard />} />
+          <Route path="/help-faq" element={<HelpFAQ />} />
+          <Route path="/suggestion-form" element={<SuggestionForm />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </div>
+      <Footer />
       {isStudentView && <TimeBlockPopup isOpen={showTimeBlockPopup} />}
     </div>
   );
