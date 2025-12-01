@@ -249,8 +249,8 @@ export function HelpFAQ() {
                                 <div key={category} className="bg-white rounded-xl shadow-md overflow-hidden">
                                     <div className="bg-gradient-to-r from-[#a33013] to-[#e17624] px-6 py-4">
                                         <div className="flex items-center gap-3">
-                                            <IconComponent className="w-6 h-6 text-white" />
-                                            <h2 className="text-2xl font-bold text-white">{category}</h2>
+                                            <IconComponent className="w-6 h-6 text-[#e17624]" />
+                                            <h2 className="text-2xl font-bold text-[#e17624]">{category}</h2>
                                         </div>
                                     </div>
                                     <div className="divide-y divide-gray-200">
