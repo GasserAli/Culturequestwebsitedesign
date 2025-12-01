@@ -43,8 +43,7 @@ export function Navigation({ isStudentView = false }: NavigationProps) {
   };
 
   const handleHelpCenter = () => {
-    // Add help center navigation logic here
-    console.log('Opening help center...');
+    navigate('/help-faq');
   };
 
   return (
