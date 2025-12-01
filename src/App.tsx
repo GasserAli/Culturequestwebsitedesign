@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Navigation } from './components/Navigation';
 import { LandingPage } from './components/LandingPage';
 import { StudentDashboard } from './components/StudentDashboard';
@@ -9,11 +10,23 @@ import { Marketplace } from './components/Marketplace';
 import { ParentDashboard } from './components/ParentDashboard';
 import { NotFoundPage } from './components/NotFoundPage';
 import { HelpFAQ } from './components/HelpFAQ';
+import { TimeBlockPopup } from './components/TimeBlockPopup';
 
 export type Page = 'landing' | 'student-dashboard' | 'curriculum' | 'topic-detail' | 'lesson' | 'marketplace' | 'parent-dashboard' | 'help-faq';
 
 function AppContent() {
   const location = useLocation();
+
+  // Timer state for tracking student page usage - persisted in sessionStorage
+  const [timeSpent, setTimeSpent] = useState(() => {
+    const saved = sessionStorage.getItem('studentTimeSpent');
+    return saved ? parseInt(saved, 10) : 0;
+  });
+  const [showTimeBlockPopup, setShowTimeBlockPopup] = useState(() => {
+    const saved = sessionStorage.getItem('timeBlockPopupShown');
+    return saved === 'true';
+  });
+  const TIME_LIMIT = 300; // 12 seconds for testing (change to 120 for 2 minutes)
 
   const isStudentView = location.pathname === '/student-dashboard' ||
     location.pathname === '/curriculum' ||
@@ -22,6 +35,42 @@ function AppContent() {
     location.pathname === '/marketplace';
 
   const isLandingPage = location.pathname === '/';
+
+  // Save timer state to sessionStorage whenever it changes
+  useEffect(() => {
+    sessionStorage.setItem('studentTimeSpent', timeSpent.toString());
+  }, [timeSpent]);
+
+  useEffect(() => {
+    sessionStorage.setItem('timeBlockPopupShown', showTimeBlockPopup.toString());
+  }, [showTimeBlockPopup]);
+
+  // Timer logic for student pages
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+
+    if (isStudentView && !showTimeBlockPopup) {
+      // Start timer when on student pages
+      interval = setInterval(() => {
+        setTimeSpent((prevTime) => {
+          const newTime = prevTime + 1;
+          if (newTime >= TIME_LIMIT) {
+            setShowTimeBlockPopup(true);
+            return newTime;
+          }
+          return newTime;
+        });
+      }, 1000); // Update every second
+    }
+    // Note: We no longer reset the timer when leaving student pages
+    // Timer persists across navigation within the session
+
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [isStudentView, showTimeBlockPopup]);
 
   return (
     <div className="min-h-screen bg-[#fff5ef]">
@@ -37,6 +86,7 @@ function AppContent() {
         <Route path="/help-faq" element={<HelpFAQ />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      {isStudentView && <TimeBlockPopup isOpen={showTimeBlockPopup} />}
     </div>
   );
 }
