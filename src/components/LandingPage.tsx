@@ -313,6 +313,7 @@ export function LandingPage() {
                   ))}
                 </ul>
                 <button
+                onClick={() => setIsOnboardingModalOpen(true)}
                   className={`w-full py-3 rounded-xl transition-colors ${plan.popular
                     ? 'bg-[#e17624] text-white hover:bg-[#c96520]'
                     : 'bg-gray-100 text-[#a33013] hover:bg-gray-200'
@@ -334,7 +335,7 @@ export function LandingPage() {
             Join thousands of families discovering the rich tapestry of Egyptian civilization
           </p>
           <button
-            onClick={() => navigate('/student-dashboard')}
+            onClick={() => setIsOnboardingModalOpen(true)}
             className="bg-white text-[#a33013] px-10 py-4 rounded-xl hover:bg-gray-100 transition-colors shadow-lg"
           >
             Get Started Free
