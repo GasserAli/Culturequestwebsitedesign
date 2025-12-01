@@ -46,6 +46,10 @@ export function Navigation({ isStudentView = false }: NavigationProps) {
     navigate('/help-faq');
   };
 
+  const handleSuggestion = () => {
+    navigate('/suggestion-form');
+  };
+
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4">
@@ -89,6 +93,7 @@ export function Navigation({ isStudentView = false }: NavigationProps) {
                 onLogout={handleLogout}
                 onSettings={handleSettings}
                 onHelpCenter={handleHelpCenter}
+                onSuggestion={handleSuggestion}
                 userAvatar="https://images.unsplash.com/photo-1748200100427-52921dec8597?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZCUyMGF2YXRhciUyMGlsbHVzdHJhdGlvbnxlbnwxfHx8fDE3NjM3MjkwMDF8MA&ixlib=rb-4.1.0&q=80&w=1080"
                 triggerRef={profileButtonRef}
               />

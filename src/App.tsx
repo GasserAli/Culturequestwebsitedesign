@@ -11,8 +11,9 @@ import { ParentDashboard } from './components/ParentDashboard';
 import { NotFoundPage } from './components/NotFoundPage';
 import { HelpFAQ } from './components/HelpFAQ';
 import { TimeBlockPopup } from './components/TimeBlockPopup';
+import { SuggestionForm } from './components/SuggestionForm';
 
-export type Page = 'landing' | 'student-dashboard' | 'curriculum' | 'topic-detail' | 'lesson' | 'marketplace' | 'parent-dashboard' | 'help-faq';
+export type Page = 'landing' | 'student-dashboard' | 'curriculum' | 'topic-detail' | 'lesson' | 'marketplace' | 'parent-dashboard' | 'help-faq' | 'suggestion-form';
 
 function AppContent() {
   const location = useLocation();
@@ -84,6 +85,7 @@ function AppContent() {
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/parent-dashboard" element={<ParentDashboard />} />
         <Route path="/help-faq" element={<HelpFAQ />} />
+        <Route path="/suggestion-form" element={<SuggestionForm />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       {isStudentView && <TimeBlockPopup isOpen={showTimeBlockPopup} />}

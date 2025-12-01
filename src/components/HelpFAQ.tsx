@@ -294,10 +294,13 @@ export function HelpFAQ() {
                         Can't find what you're looking for? Our support team is here to help!
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button className="flex items-center justify-center gap-2 bg-[#e17624] text-white px-6 py-3 rounded-xl hover:bg-[#c96520] transition-colors shadow-md">
+                        <a
+                            href="/suggestion-form"
+                            className="flex items-center justify-center gap-2 bg-[#e17624] text-white px-6 py-3 rounded-xl hover:bg-[#c96520] transition-colors shadow-md"
+                        >
                             <Mail className="w-5 h-5" />
                             Email Support
-                        </button>
+                        </a>
                         {/* <button className="flex items-center justify-center gap-2 bg-[#2cc75c] text-white px-6 py-3 rounded-xl hover:bg-[#25b350] transition-colors shadow-md">
                             <MessageCircle className="w-5 h-5" />
                             Live Chat
