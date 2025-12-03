@@ -1,7 +1,7 @@
 
   # CultureQuest Website Design
 
-  This is a code bundle for CultureQuest Website Design. The original project is available at https://www.figma.com/design/wadgXWdIcXeegn9120HZS1/CultureQuest-Website-Design.
+  This is a code bundle for CultureQuest Website Design. The full implemented project is available at https://https://culturequestwebsitedesign.vercel.app.
 
   ## Running the code
 
