@@ -1,4 +1,4 @@
-import { User, HelpCircle, Settings, LogOut, RefreshCw } from 'lucide-react';
+import { User, HelpCircle, Settings, LogOut, RefreshCw, MessageSquare } from 'lucide-react';
 import { useEffect, useRef, RefObject } from 'react';
 
 
@@ -10,6 +10,7 @@ interface ProfileModalProps {
     onLogout?: () => void;
     onSettings?: () => void;
     onHelpCenter?: () => void;
+    onSuggestion?: () => void;
     userName?: string;
     userEmail?: string;
     userAvatar?: string;
@@ -24,6 +25,7 @@ export function ProfileModal({
     onLogout,
     onSettings,
     onHelpCenter,
+    onSuggestion,
     userName = 'Jayden Mango',
     userEmail = 'jaydenmango@gmail.com',
     userAvatar,
@@ -92,6 +94,17 @@ export function ProfileModal({
                 >
                     <HelpCircle className="w-5 h-5 text-gray-600" />
                     <span className="text-sm text-gray-700">Help Center</span>
+                </button>
+
+                <button
+                    onClick={() => {
+                        onSuggestion?.();
+                        onClose();
+                    }}
+                    className="w-full px-4 py-3 flex items-center gap-3 hover:bg-gray-50 transition-colors text-left"
+                >
+                    <MessageSquare className="w-5 h-5 text-gray-600" />
+                    <span className="text-sm text-gray-700">Send Suggestion</span>
                 </button>
 
                 <button

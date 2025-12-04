@@ -12,7 +12,7 @@ type AccountType = 'child' | 'parent';
 
 export function LoginModal({ isOpen, onClose, onOpenSignup }: LoginModalProps) {
     const navigate = useNavigate();
-    const [accountType, setAccountType] = useState<AccountType>('parent');
+    const [accountType, setAccountType] = useState<AccountType>('child');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -118,15 +118,6 @@ export function LoginModal({ isOpen, onClose, onOpenSignup }: LoginModalProps) {
                         </label>
                         <div className="flex gap-3">
                             <button
-                                onClick={() => setAccountType('parent')}
-                                className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all ${accountType === 'parent'
-                                    ? 'bg-[#e17624] text-white shadow-lg scale-105'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                    }`}
-                            >
-                                Parent
-                            </button>
-                            <button
                                 onClick={() => setAccountType('child')}
                                 className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all ${accountType === 'child'
                                     ? 'bg-[#e17624] text-white shadow-lg scale-105'
@@ -135,6 +126,16 @@ export function LoginModal({ isOpen, onClose, onOpenSignup }: LoginModalProps) {
                             >
                                 Learner
                             </button>
+                            <button
+                                onClick={() => setAccountType('parent')}
+                                className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all ${accountType === 'parent'
+                                    ? 'bg-[#e17624] text-white shadow-lg scale-105'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                    }`}
+                            >
+                                Parent
+                            </button>
+
                         </div>
                     </div>
 

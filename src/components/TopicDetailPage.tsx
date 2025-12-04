@@ -28,9 +28,6 @@ export function TopicDetailPage() {
     const location = useLocation();
     const topicData = location.state?.topic as TopicData;
 
-    // State to track which units are expanded
-    const [expandedUnits, setExpandedUnits] = useState<Set<string>>(new Set());
-
     // Mock data - in a real app, this would come from props or API
     const defaultTopicData: TopicData = {
         id: 1,
@@ -115,6 +112,12 @@ export function TopicDetailPage() {
     };
 
     const topic = topicData || defaultTopicData;
+
+    // State to track which units are expanded - initialized with all units expanded
+    const [expandedUnits, setExpandedUnits] = useState<Set<string>>(() => {
+        // Initialize with all unit IDs to expand all units by default
+        return new Set(topic.units.map(unit => unit.id));
+    });
 
     const toggleUnit = (unitId: string) => {
         const newExpanded = new Set(expandedUnits);

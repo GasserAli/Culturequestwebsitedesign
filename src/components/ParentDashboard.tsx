@@ -4,9 +4,11 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { SettingsModal } from './SettingsModal';
+import { PasswordLockModal } from './PasswordLockModal';
 
 export function ParentDashboard() {
   const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [settingsDefaultTab, setSettingsDefaultTab] = useState<'general' | 'security' | 'childSettings' | 'billing'>('general');
 
@@ -306,6 +308,12 @@ export function ParentDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Password Lock Modal */}
+      <PasswordLockModal
+        isOpen={!isAuthenticated}
+        onSuccess={() => setIsAuthenticated(true)}
+      />
 
       {/* Settings Modal */}
       <SettingsModal
