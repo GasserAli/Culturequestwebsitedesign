@@ -16,6 +16,7 @@ interface ChildAccount {
     profilePicture: string;
     screenTime: number; // in minutes
     screenTimeLimit: number; // in minutes
+    age: number;
 }
 
 interface ConfirmationPopupProps {
@@ -92,14 +93,16 @@ export function SettingsModal({ isOpen, onClose, defaultTab = 'general' }: Setti
             username: 'sarah_learner',
             profilePicture: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
             screenTime: 45,
-            screenTimeLimit: 120
+            screenTimeLimit: 120,
+            age: 10
         },
         {
             id: 2,
             username: 'omar_explorer',
             profilePicture: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
             screenTime: 90,
-            screenTimeLimit: 90
+            screenTimeLimit: 90,
+            age: 12
         }
     ]);
 
@@ -185,6 +188,22 @@ export function SettingsModal({ isOpen, onClose, defaultTab = 'general' }: Setti
                 : child
         ));
         setScreenTimeExtensions({ ...screenTimeExtensions, [childId]: 30 });
+    };
+
+    const handleMatchContentForAge = (childId: number) => {
+        const child = childAccounts.find(c => c.id === childId);
+        if (child) {
+            console.log(`Matching content for ${child.username} (age ${child.age})`);
+            alert(`Content has been matched for age ${child.age}!`);
+        }
+    };
+
+    const handleAgeChange = (childId: number, newAge: number) => {
+        setChildAccounts(childAccounts.map(child =>
+            child.id === childId
+                ? { ...child, age: newAge }
+                : child
+        ));
     };
 
     const tabs = [
@@ -470,6 +489,37 @@ export function SettingsModal({ isOpen, onClose, defaultTab = 'general' }: Setti
                                                         <Plus className="w-4 h-4" />
                                                         Extend Screen Time
                                                     </button>
+                                                </div>
+                                            </div>
+
+                                            {/* Age-Based Content Matching */}
+                                            <div>
+                                                <div className="flex items-center gap-2 mb-3">
+                                                    <User className="w-5 h-5 text-[#e17624]" />
+                                                    <h4 className="font-bold text-gray-900">Age Settings</h4>
+                                                </div>
+                                                <div className="flex gap-3">
+                                                    <div className="flex-1">
+                                                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                            Age
+                                                        </label>
+                                                        <input
+                                                            type="number"
+                                                            value={child.age}
+                                                            onChange={(e) => handleAgeChange(child.id, parseInt(e.target.value) || 0)}
+                                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e17624]"
+                                                            min="1"
+                                                            max="18"
+                                                        />
+                                                    </div>
+                                                    <div className="flex items-end">
+                                                        <button
+                                                            onClick={() => handleMatchContentForAge(child.id)}
+                                                            className="bg-[#2cc75c] text-black py-2 px-6 rounded-lg font-medium hover:bg-[#25b350] transition-colors whitespace-nowrap"
+                                                        >
+                                                            Match content for age
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
