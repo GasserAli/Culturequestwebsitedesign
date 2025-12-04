@@ -107,16 +107,18 @@ export function ProfileModal({
                     <span className="text-sm text-gray-700">Send Suggestion</span>
                 </button>
 
-                <button
-                    onClick={() => {
-                        onSettings?.();
-                        onClose();
-                    }}
-                    className="w-full px-4 py-3 flex items-center gap-3 hover:bg-gray-50 transition-colors text-left"
-                >
-                    <Settings className="w-5 h-5 text-gray-600" />
-                    <span className="text-sm text-gray-700">Settings</span>
-                </button>
+                {!isStudentView && (
+                    <button
+                        onClick={() => {
+                            onSettings?.();
+                            onClose();
+                        }}
+                        className="w-full px-4 py-3 flex items-center gap-3 hover:bg-gray-50 transition-colors text-left"
+                    >
+                        <Settings className="w-5 h-5 text-gray-600" />
+                        <span className="text-sm text-gray-700">Settings</span>
+                    </button>
+                )}
 
                 {isStudentView && onSwitchView && (
                     <button

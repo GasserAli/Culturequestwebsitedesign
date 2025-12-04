@@ -2,6 +2,7 @@ import { Crown, User } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import { ProfileModal } from './ProfileModal';
+import { SettingsModal } from './SettingsModal';
 
 interface NavigationProps {
   isStudentView?: boolean;
@@ -11,6 +12,7 @@ export function Navigation({ isStudentView = false }: NavigationProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const profileButtonRef = useRef<HTMLButtonElement>(null);
 
   const studentLinks: { path: string; label: string }[] = [
@@ -38,8 +40,7 @@ export function Navigation({ isStudentView = false }: NavigationProps) {
   };
 
   const handleSettings = () => {
-    // Add settings navigation logic here
-    console.log('Opening settings...');
+    setIsSettingsModalOpen(true);
   };
 
   const handleHelpCenter = () => {
@@ -101,6 +102,12 @@ export function Navigation({ isStudentView = false }: NavigationProps) {
           </div>
         </div>
       </div>
+
+      {/* Settings Modal */}
+      <SettingsModal
+        isOpen={isSettingsModalOpen}
+        onClose={() => setIsSettingsModalOpen(false)}
+      />
     </nav>
   );
 }
