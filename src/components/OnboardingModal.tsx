@@ -1,6 +1,9 @@
 import { X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AvatarExperience } from './avatar/avatarExperience';
+import { useAvatarStore } from './store/avatarStore';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from './ui/tabs'; // Ensure these UI components exist or use standard HTML
 
 interface OnboardingModalProps {
     isOpen: boolean;
@@ -165,6 +168,38 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
                 return '';
         }
     };
+    function StoreConnector() {
+    const { categories, changeAsset, customization } = useAvatarStore();
+    
+    return (
+        <Tabs defaultValue={categories[0]?.id} className="w-full">
+            <TabsList className="w-full justify-start overflow-x-auto">
+                {categories.map(cat => (
+                    <TabsTrigger key={cat.id} value={cat.id}>{cat.name}</TabsTrigger>
+                ))}
+            </TabsList>
+            {categories.map(cat => (
+                <TabsContent key={cat.id} value={cat.id} className="h-64 overflow-y-auto">
+                    <div className="grid grid-cols-2 gap-2">
+                        {cat.assets.map(asset => (
+                            <button
+                                key={asset.id}
+                                onClick={() => changeAsset(cat.id, asset)}
+                                className={`p-2 rounded-lg border-2 ${
+                                    customization[cat.id]?.id === asset.id 
+                                    ? 'border-[#e17624] bg-orange-50' 
+                                    : 'border-transparent bg-white'
+                                }`}
+                            >
+                                <div className="text-sm font-medium">{asset.name}</div>
+                            </button>
+                        ))}
+                    </div>
+                </TabsContent>
+            ))}
+        </Tabs>
+    );
+}
 
     return (
         <div
@@ -604,17 +639,18 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
 
                             {/* Stage 4: Customize Avatar */}
                             {currentStage === 'avatar' && (
-                                <div className="space-y-4">
-                                    <div className="text-center py-12">
-                                        <div className="w-32 h-32 mx-auto bg-gradient-to-br from-[#e17624] to-[#a33013] rounded-full flex items-center justify-center mb-6">
-                                            <span className="text-6xl">👤</span>
-                                        </div>
-                                        <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                                            Avatar Customization
-                                        </h3>
-                                        <p className="text-gray-600">
-                                            This section will be implemented soon!
-                                        </p>
+                                <div className="flex flex-col lg:flex-row h-[500px] gap-6">
+                                    {/* Left: 3D Viewport */}
+                                    <div className="flex-1 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl overflow-hidden border-2 border-[#e17624]/20 relative">
+                                        <AvatarExperience />
+                                    </div>
+
+                                    {/* Right: Controls */}
+                                    <div className="w-full lg:w-64 flex flex-col bg-gray-50 rounded-xl p-4">
+                                        <h3 className="font-bold text-gray-800 mb-4">Customize Look</h3>
+                                        
+                                        {/* We assume useAvatarStore is imported */}
+                                        <StoreConnector />
                                     </div>
                                 </div>
                             )}
