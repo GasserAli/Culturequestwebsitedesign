@@ -4,7 +4,7 @@ import { AvatarModel } from "./AvatarModel";
 
 export function AvatarExperience() {
   return (
-    <Canvas camera={{ position: [0, 0, 100], fov: 50 }} shadows>
+    <Canvas camera={{ position: [0, 0, 5], fov: 50 }} shadows>
       <ambientLight intensity={0.7} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} castShadow />
       

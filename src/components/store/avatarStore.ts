@@ -14,7 +14,10 @@ const getDefaultCustomization = () =>
   ASSET_CATEGORIES.reduce((acc, category) => ({
     ...acc,
     [category.id]: category.id === "head" ? category.assets[0] : 
-    category.id === "eyes" ? category.assets[0] : null
+    category.id === "eyes" ? category.assets[0] : 
+    category.id === "top" ? category.assets[0] : 
+    category.id === "bottom" ? category.assets[0] : 
+    category.id === "hair" ? category.assets[0] : null
 
   }), {});
 

@@ -12,7 +12,7 @@ export default function AvatarSamplePage() {
 
                 {/* LEFT PANEL: 3D Experience */}
                 {/* The container needs relative positioning and defined height for the Canvas */}
-                <div className="w-full md:w-2/3 bg-gradient-to-b from-blue-50 to-indigo-100 relative order-2 md:order-1 pt-40">
+                <div className="w-full md:w-2/3 bg-gradient-to-b from-blue-50 to-indigo-100 relative order-2 md:order-1">
                     <AvatarExperience />
 
                     {/* Floating Header Overlay */}
