@@ -16,7 +16,7 @@ import { Footer } from './components/Footer';
 import { TimeBlockPopup } from './components/TimeBlockPopup';
 
 
-export type Page = 'landing' | 'student-dashboard' | 'curriculum' | 'topic-detail' | 'lesson' | 'marketplace' | 'parent-dashboard' | 'help-faq' | 'suggestion-form';
+export type Page = 'landing' | 'student-dashboard' | 'curriculum' | 'topic-detail' | 'lesson' | 'marketplace' | 'parent-dashboard' | 'help-faq' | 'suggestion-form' | 'avatar';
 
 function AppContent() {
   const location = useLocation();
@@ -36,7 +36,8 @@ function AppContent() {
     location.pathname === '/curriculum' ||
     location.pathname === '/topic-detail' ||
     location.pathname === '/lesson' ||
-    location.pathname === '/marketplace';
+    location.pathname === '/marketplace' ||
+    location.pathname === '/avatar';
 
   const isLandingPage = location.pathname === '/';
 
@@ -90,6 +91,7 @@ function AppContent() {
           <Route path="/parent-dashboard" element={<ParentDashboard />} />
           <Route path="/help-faq" element={<HelpFAQ />} />
           <Route path="/suggestion-form" element={<SuggestionForm />} />
+          <Route path="/avatar" element={<AvatarSamplePage />} /> 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
