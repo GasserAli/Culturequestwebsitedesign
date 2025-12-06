@@ -169,37 +169,51 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
         }
     };
     function StoreConnector() {
-    const { categories, changeAsset, customization } = useAvatarStore();
-    
-    return (
-        <Tabs defaultValue={categories[0]?.id} className="w-full">
-            <TabsList className="w-full justify-start overflow-x-auto">
-                {categories.map(cat => (
-                    <TabsTrigger key={cat.id} value={cat.id}>{cat.name}</TabsTrigger>
-                ))}
-            </TabsList>
-            {categories.map(cat => (
-                <TabsContent key={cat.id} value={cat.id} className="h-64 overflow-y-auto">
-                    <div className="grid grid-cols-2 gap-2">
-                        {cat.assets.map(asset => (
-                            <button
-                                key={asset.id}
-                                onClick={() => changeAsset(cat.id, asset)}
-                                className={`p-2 rounded-lg border-2 ${
-                                    customization[cat.id]?.id === asset.id 
-                                    ? 'border-[#e17624] bg-orange-50' 
-                                    : 'border-transparent bg-white'
+        const { categories, changeAsset, customization } = useAvatarStore();
+        const [activeCategory, setActiveCategory] = useState(categories[0]?.id || '');
+
+        const activeCat = categories.find(cat => cat.id === activeCategory);
+
+        return (
+            <div className="w-full flex-1 flex overflow-hidden gap-2">
+                {/* Left: Category buttons */}
+                <div className="flex flex-col gap-1 w-20 shrink-0">
+                    {categories.map(cat => (
+                        <button
+                            key={cat.id}
+                            onClick={() => setActiveCategory(cat.id)}
+                            className={`text-xs px-1.5 py-1.5 rounded-lg text-left transition-colors ${activeCategory === cat.id
+                                    ? 'bg-[#e17624] text-white'
+                                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
                                 }`}
-                            >
-                                <div className="text-sm font-medium">{asset.name}</div>
-                            </button>
-                        ))}
-                    </div>
-                </TabsContent>
-            ))}
-        </Tabs>
-    );
-}
+                        >
+                            {cat.name}
+                        </button>
+                    ))}
+                </div>
+
+                {/* Right: Asset selection */}
+                <div className="flex-1 overflow-y-auto">
+                    {activeCat && (
+                        <div className="grid grid-cols-2 gap-1.5">
+                            {activeCat.assets.map(asset => (
+                                <button
+                                    key={asset.id}
+                                    onClick={() => changeAsset(activeCat.id, asset)}
+                                    className={`p-1.5 rounded-lg border-2 ${customization[activeCat.id]?.id === asset.id
+                                            ? 'border-[#e17624] bg-orange-50'
+                                            : 'border-transparent bg-white hover:border-gray-200'
+                                        }`}
+                                >
+                                    <div className="text-xs font-medium">{asset.name}</div>
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div
@@ -650,10 +664,10 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
                                         <h3 className="font-bold text-gray-800 mb-4">Customize Look</h3>
                                         <StoreConnector />
                                         {/* We assume useAvatarStore is imported */}
-                                        
+
                                     </div>
                                 </div>
-                                
+
                             )}
 
                             {/* Action Buttons */}

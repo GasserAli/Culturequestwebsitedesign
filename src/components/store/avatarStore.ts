@@ -13,11 +13,11 @@ interface AvatarState {
 const getDefaultCustomization = () =>
   ASSET_CATEGORIES.reduce((acc, category) => ({
     ...acc,
-    [category.id]: category.id === "head" ? category.assets[0] : 
-    category.id === "eyes" ? category.assets[0] : 
-    category.id === "top" ? category.assets[0] : 
-    category.id === "bottom" ? category.assets[0] : 
-    category.id === "hair" ? category.assets[0] : null
+    [category.id]: category.id === "head" ? category.assets[0] :
+      category.id === "eyes" ? category.assets[0] :
+        category.id === "top" ? category.assets[0] :
+          category.id === "bottom" ? category.assets[0] :
+            category.id === "hair" ? category.assets[0] : null
 
   }), {});
 
@@ -34,11 +34,26 @@ export const useAvatarStore = create<AvatarState>((set) => ({
     set((state) => {
       // If clicking the same asset, deselect it (set to null)
       const isCurrentlySelected = state.customization[categoryId]?.id === asset.id;
+
+      const newCustomization = {
+        ...state.customization,
+        [categoryId]: isCurrentlySelected ? null : asset
+      };
+
+      // If selecting an outfit, deselect top, bottom, and shoe
+      if (categoryId === 'outfit' && !isCurrentlySelected) {
+        newCustomization.top = null;
+        newCustomization.bottom = null;
+        newCustomization.shoe = null;
+      }
+
+      // If selecting top or bottom, deselect outfit
+      if ((categoryId === 'top' || categoryId === 'bottom') && !isCurrentlySelected) {
+        newCustomization.outfit = null;
+      }
+
       return {
-        customization: {
-          ...state.customization,
-          [categoryId]: isCurrentlySelected ? null : asset
-        }
+        customization: newCustomization
       };
     }),
 
