@@ -641,18 +641,19 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
                             {currentStage === 'avatar' && (
                                 <div className="flex flex-col lg:flex-row h-[500px] gap-6">
                                     {/* Left: 3D Viewport */}
-                                    <div className="flex-1 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl overflow-hidden border-2 border-[#e17624]/20 relative">
+                                    <div className="flex-1 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl border-2 border-[#e17624]/20 relative">
                                         <AvatarExperience />
                                     </div>
 
                                     {/* Right: Controls */}
                                     <div className="w-full lg:w-64 flex flex-col bg-gray-50 rounded-xl p-4">
                                         <h3 className="font-bold text-gray-800 mb-4">Customize Look</h3>
-                                        
-                                        {/* We assume useAvatarStore is imported */}
                                         <StoreConnector />
+                                        {/* We assume useAvatarStore is imported */}
+                                        
                                     </div>
                                 </div>
+                                
                             )}
 
                             {/* Action Buttons */}

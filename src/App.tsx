@@ -9,6 +9,12 @@ import { LessonPage } from './components/LessonPage';
 import { Marketplace } from './components/Marketplace';
 import { ParentDashboard } from './components/ParentDashboard';
 import AvatarSamplePage from "./components/avatarSample";
+import { HelpFAQ } from './components/HelpFAQ';
+import { SuggestionForm } from './components/SuggestionForm';
+import { NotFoundPage } from './components/NotFoundPage';
+import { Footer } from './components/Footer';
+import { TimeBlockPopup } from './components/TimeBlockPopup';
+
 
 export type Page = 'landing' | 'student-dashboard' | 'curriculum' | 'topic-detail' | 'lesson' | 'marketplace' | 'parent-dashboard' | 'help-faq' | 'suggestion-form';
 
@@ -96,8 +102,8 @@ function AppContent() {
 export default function App() {
   return (
     <BrowserRouter>
-      {/* <AppContent /> */}
-      <AvatarSamplePage />
+      <AppContent />
+      {/* <AvatarSamplePage /> */}
     </BrowserRouter>
   );
 }
