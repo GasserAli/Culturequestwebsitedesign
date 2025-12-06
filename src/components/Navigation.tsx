@@ -2,6 +2,7 @@ import { Crown, User } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import { ProfileModal } from './ProfileModal';
+import { SettingsModal } from './SettingsModal';
 
 interface NavigationProps {
   isStudentView?: boolean;
@@ -11,6 +12,7 @@ export function Navigation({ isStudentView = false }: NavigationProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const profileButtonRef = useRef<HTMLButtonElement>(null);
 
   const studentLinks: { path: string; label: string }[] = [
@@ -38,13 +40,15 @@ export function Navigation({ isStudentView = false }: NavigationProps) {
   };
 
   const handleSettings = () => {
-    // Add settings navigation logic here
-    console.log('Opening settings...');
+    setIsSettingsModalOpen(true);
   };
 
   const handleHelpCenter = () => {
-    // Add help center navigation logic here
-    console.log('Opening help center...');
+    navigate('/help-faq');
+  };
+
+  const handleSuggestion = () => {
+    navigate('/suggestion-form');
   };
 
   return (
@@ -90,6 +94,7 @@ export function Navigation({ isStudentView = false }: NavigationProps) {
                 onLogout={handleLogout}
                 onSettings={handleSettings}
                 onHelpCenter={handleHelpCenter}
+                onSuggestion={handleSuggestion}
                 userAvatar="https://images.unsplash.com/photo-1748200100427-52921dec8597?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZCUyMGF2YXRhciUyMGlsbHVzdHJhdGlvbnxlbnwxfHx8fDE3NjM3MjkwMDF8MA&ixlib=rb-4.1.0&q=80&w=1080"
                 triggerRef={profileButtonRef}
               />
@@ -97,6 +102,12 @@ export function Navigation({ isStudentView = false }: NavigationProps) {
           </div>
         </div>
       </div>
+
+      {/* Settings Modal */}
+      <SettingsModal
+        isOpen={isSettingsModalOpen}
+        onClose={() => setIsSettingsModalOpen(false)}
+      />
     </nav>
   );
 }
