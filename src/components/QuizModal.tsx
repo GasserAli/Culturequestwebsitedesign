@@ -1,5 +1,5 @@
 import { X, ArrowRight, ArrowLeft } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface Question {
     id: number;
@@ -103,10 +103,58 @@ export function QuizModal({ isOpen, onClose }: QuizModalProps) {
         return correct;
     };
 
+    // Calculate if all questions are answered (needed for keyboard controls)
+    const allAnswered = Object.keys(selectedAnswers).length === questions.length;
+
+    // Keyboard controls
+    useEffect(() => {
+        if (!isOpen || submitted) return;
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            // Arrow keys - Navigate through options
+            if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                const currentSelected = selectedAnswers[currentQuestion.id];
+                const numChoices = currentQuestion.choices.length;
+
+                let newIndex: number;
+                if (currentSelected === undefined) {
+                    // No selection yet, start at first option
+                    newIndex = 0;
+                } else if (e.key === 'ArrowDown') {
+                    // Move down (cycle to top if at bottom)
+                    newIndex = (currentSelected + 1) % numChoices;
+                } else {
+                    // Move up (cycle to bottom if at top)
+                    newIndex = (currentSelected - 1 + numChoices) % numChoices;
+                }
+
+                handleAnswerSelect(currentQuestion.id, newIndex);
+            }
+            // Enter key - Next question or Submit
+            else if (e.key === 'Enter') {
+                if (isLastQuestion && allAnswered) {
+                    handleSubmit();
+                } else if (hasAnsweredCurrent && !isLastQuestion) {
+                    handleNext();
+                }
+            }
+            // Backspace key - Previous question
+            else if (e.key === 'Backspace') {
+                e.preventDefault(); // Prevent browser back navigation
+                if (!isFirstQuestion) {
+                    handlePrevious();
+                }
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isOpen, submitted, currentQuestionIndex, hasAnsweredCurrent, isLastQuestion, isFirstQuestion, allAnswered, currentQuestion, selectedAnswers]);
+
     if (!isOpen) return null;
 
     const score = submitted ? calculateScore() : 0;
-    const allAnswered = Object.keys(selectedAnswers).length === questions.length;
 
     // Show results view if submitted
     if (submitted) {
@@ -164,10 +212,10 @@ export function QuizModal({ isOpen, onClose }: QuizModalProps) {
                                                 <div key={choiceIndex} className={choiceClasses}>
                                                     <div className="flex items-center gap-3">
                                                         <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isCorrectChoice
-                                                                ? 'border-[#2cc75c] bg-[#2cc75c]'
-                                                                : isSelected && !isCorrectChoice
-                                                                    ? 'border-red-500 bg-red-500'
-                                                                    : 'border-gray-300'
+                                                            ? 'border-[#2cc75c] bg-[#2cc75c]'
+                                                            : isSelected && !isCorrectChoice
+                                                                ? 'border-red-500 bg-red-500'
+                                                                : 'border-gray-300'
                                                             }`}>
                                                             {isCorrectChoice && (
                                                                 <div className="w-2 h-2 bg-white rounded-full"></div>
@@ -267,16 +315,23 @@ export function QuizModal({ isOpen, onClose }: QuizModalProps) {
                                         onClick={() => handleAnswerSelect(currentQuestion.id, choiceIndex)}
                                         className={choiceClasses}
                                     >
-                                        <div className="flex items-center gap-3">
-                                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isSelected
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center gap-3">
+                                                <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isSelected
                                                     ? 'border-[#e17624] bg-[#e17624]'
                                                     : 'border-gray-300'
-                                                }`}>
-                                                {isSelected && (
-                                                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                                                )}
+                                                    }`}>
+                                                    {isSelected && (
+                                                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                                                    )}
+                                                </div>
+                                                <span className="font-medium">{choice}</span>
                                             </div>
-                                            <span className="font-medium">{choice}</span>
+                                            {isSelected && (
+                                                <span className="text-xs text-gray-400 flex items-center gap-1">
+                                                    <span className="opacity-60">↑↓</span>
+                                                </span>
+                                            )}
                                         </div>
                                     </button>
                                 );
@@ -292,10 +347,11 @@ export function QuizModal({ isOpen, onClose }: QuizModalProps) {
                         {!isFirstQuestion && (
                             <button
                                 onClick={handlePrevious}
-                                className="px-6 py-4 rounded-xl font-semibold bg-white border-2 border-gray-300 text-gray-700 hover:bg-gray-50 transition-all flex items-center gap-2"
+                                className="px-6 py-4 rounded-xl font-semibold bg-white border-2 border-gray-300 text-gray-700 hover:bg-gray-50 transition-all flex items-center gap-3"
                             >
                                 <ArrowLeft className="w-5 h-5" />
-                                Previous
+                                <span>Previous</span>
+                                <span className="text-xs opacity-60 ml-1 px-2 py-1 bg-gray-100 rounded border border-gray-300">⌫</span>
                             </button>
                         )}
 
@@ -315,24 +371,26 @@ export function QuizModal({ isOpen, onClose }: QuizModalProps) {
                             <button
                                 onClick={handleNext}
                                 disabled={!hasAnsweredCurrent}
-                                className={`px-6 py-4 rounded-xl font-semibold transition-all flex items-center gap-2 ${hasAnsweredCurrent
-                                        ? 'bg-[#e17624] text-white hover:bg-[#c96520]'
-                                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                className={`px-6 py-4 rounded-xl font-semibold transition-all flex items-center gap-3 ${hasAnsweredCurrent
+                                    ? 'bg-[#e17624] text-white hover:bg-[#c96520]'
+                                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                                     }`}
                             >
-                                Next Question
+                                <span>Next Question</span>
                                 <ArrowRight className="w-5 h-5" />
+                                <span className={`text-xs ml-1 px-2 py-1 rounded border ${hasAnsweredCurrent ? 'bg-white/20 border-white/30' : 'bg-gray-400 border-gray-400'}`}>↵</span>
                             </button>
                         ) : (
                             <button
                                 onClick={handleSubmit}
                                 disabled={!allAnswered}
-                                className={`px-6 py-4 rounded-xl font-semibold transition-all ${allAnswered
-                                        ? 'bg-[#2cc75c] text-white hover:bg-[#28b350]'
-                                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                className={`px-6 py-4 rounded-xl font-semibold transition-all flex items-center gap-3 ${allAnswered
+                                    ? 'bg-[#2cc75c] text-white hover:bg-[#28b350]'
+                                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                                     }`}
                             >
-                                Submit Quiz
+                                <span>Submit Quiz</span>
+                                <span className={`text-xs ml-1 px-2 py-1 rounded border ${allAnswered ? 'bg-white/20 border-white/30' : 'bg-gray-400 border-gray-400'}`}>↵</span>
                             </button>
                         )}
                     </div>
