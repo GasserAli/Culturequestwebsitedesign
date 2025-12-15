@@ -6,6 +6,7 @@ import { QuizModal } from './QuizModal';
 export function LessonPage() {
   const navigate = useNavigate();
   const [isQuizOpen, setIsQuizOpen] = useState(false);
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-5xl mx-auto">
@@ -55,6 +56,17 @@ export function LessonPage() {
         {/* Video Section */}
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-6">
           <div className="relative w-full" style={{ paddingBottom: '42.15%' }}>
+            {/* Loading Overlay */}
+            {isVideoLoading && (
+              <div className="absolute inset-0 bg-gradient-to-br from-[#a33013]/90 to-[#e17624]/90 backdrop-blur-sm z-10 flex flex-col items-center justify-center">
+                <div className="relative">
+                  {/* Spinner */}
+                  <div className="w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
+                </div>
+                <p className="text-white text-lg font-semibold mt-6">Loading video...</p>
+              </div>
+            )}
+
             <iframe
               className="absolute top-0 left-0 w-full h-full"
               src="https://www.youtube.com/embed/vJucA4FOTSI"
@@ -63,6 +75,7 @@ export function LessonPage() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
+              onLoad={() => setIsVideoLoading(false)}
             ></iframe>
           </div>
         </div>
