@@ -183,8 +183,8 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
                             key={cat.id}
                             onClick={() => setActiveCategory(cat.id)}
                             className={`text-xs px-1.5 py-1.5 rounded-lg text-left transition-colors ${activeCategory === cat.id
-                                    ? 'bg-[#e17624] text-white'
-                                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                                ? 'bg-[#e17624] text-white'
+                                : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
                                 }`}
                         >
                             {cat.name}
@@ -201,8 +201,8 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
                                     key={asset.id}
                                     onClick={() => changeAsset(activeCat.id, asset)}
                                     className={`p-1.5 rounded-lg border-2 ${customization[activeCat.id]?.id === asset.id
-                                            ? 'border-[#e17624] bg-orange-50'
-                                            : 'border-transparent bg-white hover:border-gray-200'
+                                        ? 'border-[#e17624] bg-orange-50'
+                                        : 'border-transparent bg-white hover:border-gray-200'
                                         }`}
                                 >
                                     <div className="text-xs font-medium">{asset.name}</div>

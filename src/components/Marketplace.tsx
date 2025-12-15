@@ -1,6 +1,8 @@
 import { Coins, ShoppingBag, Star, Sparkles, Check, Package } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AvatarExperience } from './avatar/avatarExperience';
+import { useAvatarStore } from './store/avatarStore';
 
 interface MarketplaceItem {
   id: number;
@@ -144,9 +146,31 @@ export function Marketplace() {
 
   const isOwned = (itemId: number) => ownedItems.includes(itemId);
 
+  const { categories, changeAsset, customization, updateColor, setCurrentCategory } = useAvatarStore();
+  const [activeCategory, setActiveCategory] = useState(categories[0]?.id || '');
+  const activeCat = categories.find(cat => cat.id === activeCategory);
+  const currentColor = customization[activeCategory]?.color || '#ffffff';
+
+  // Update the store's current category when activeCategory changes
+  const handleCategoryChange = (categoryId: string) => {
+    setActiveCategory(categoryId);
+    const category = categories.find(cat => cat.id === categoryId);
+    if (category) {
+      setCurrentCategory(category);
+    }
+  };
+
+  // Predefined color palette
+  const colorPalette = [
+    '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8',
+    '#F7DC6F', '#BB8FCE', '#85C1E2', '#F8B88B', '#ABEBC6',
+    '#FAD7A0', '#D7BDE2', '#A3E4D7', '#F9E79F', '#FADBD8'
+  ];
+
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto">
+        {/* Avatar Customization Section */}
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
           <div className="flex items-center justify-between">
@@ -163,6 +187,59 @@ export function Marketplace() {
             </div>
           </div>
         </div>
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
+          <h2 className="text-3xl font-bold text-[#a33013] mb-6">Customize Your Avatar</h2>
+          <div className="grid lg:grid-cols-2 gap-6">
+            {/* 3D Avatar Preview */}
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl border-2 border-[#e17624]/20 h-[500px]">
+              <AvatarExperience />
+            </div>
+
+            {/* Customization Controls */}
+            <div className="flex flex-col gap-4">
+              <h3 className="font-bold text-gray-800 mb-4 text-xl">Customize Look</h3>
+              <div className="flex-1 flex overflow-hidden gap-2">
+                {/* Category buttons */}
+                <div className="flex flex-col gap-1 w-24 shrink-0 overflow-y-auto">
+                  {categories.map(cat => (
+                    <button
+                      key={cat.id}
+                      onClick={() => handleCategoryChange(cat.id)}
+                      className={`text-xs px-2 py-2 rounded-lg text-left transition-colors ${activeCategory === cat.id
+                        ? 'bg-[#e17624] text-white'
+                        : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                        }`}
+                    >
+                      {cat.name}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Asset selection */}
+                <div className="flex-1 overflow-y-auto bg-gray-50 rounded-xl p-4">
+                  {activeCat && (
+                    <div className="grid grid-cols-2 gap-2">
+                      {activeCat.assets.map(asset => (
+                        <button
+                          key={asset.id}
+                          onClick={() => changeAsset(activeCat.id, asset)}
+                          className={`p-2 rounded-lg border-2 transition-all ${customization[activeCat.id]?.id === asset.id
+                            ? 'border-[#e17624] bg-orange-50'
+                            : 'border-transparent bg-white hover:border-gray-200'
+                            }`}
+                        >
+                          <div className="text-xs font-medium">{asset.name}</div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
 
         {/* Stats */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">

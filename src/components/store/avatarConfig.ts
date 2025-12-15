@@ -77,6 +77,10 @@ export const ASSET_CATEGORIES = [
   {
     id: "head",
     name: "Head",
+    colorPalette: [
+      '#f5c6a5', '#e2baa8', '#d1aa93', '#c6957c', '#8d5524', '#5e3a18', // Skin tones
+      '#ffdbac', '#e0ac69', '#3e2615', '#29170e'
+    ],
     assets: [
       { id: "head_1", name: "Round", url: "../../public/Assets/Head.001.glb" },
       { id: "head_2", name: "Oval", url: "../../public/Assets/Head.002.glb" },
@@ -88,6 +92,10 @@ export const ASSET_CATEGORIES = [
   {
     id: "outfit",
     name: "Outfit",
+    colorPalette: [
+      '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', // Clothing colors
+      '#F7DC6F', '#BB8FCE', '#85C1E2', '#F8B88B', '#ABEBC6'
+    ],
     assets: [
       { id: "outfit_1", name: "Bear", url: "../../public/Assets/Outfit.001.glb" },
       { id: "outfit_2", name: "Pokemon", url: "../../public/Assets/Outfit.002.glb" },
@@ -173,8 +181,7 @@ export const ASSET_CATEGORIES = [
     assets: [
       { id: "shoes_1", name: "Sandals", url: "../../public/Assets/Shoes.001.glb" },
       { id: "shoes_2", name: "Shoes 2", url: "../../public/Assets/Shoes.002.glb" },
-      { id: "shoes_3", name: "Shoes 3", url: "../../public/Assets/Shoes.003.glb" },
-      { id: "shoes_4", name: "Shoes 4", url: "../../public/Assets/Shoes.004.glb" }
+      { id: "shoes_3", name: "Shoes 3", url: "../../public/Assets/Shoes.003.glb" }
     ]
   },
   {
